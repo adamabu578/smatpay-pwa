@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { User, Mail, Phone, RectangleEllipsis, EyeOff, Eye, ArrowLeft } from "lucide-react";
+import { APIConstants } from "@/lib/api-constants";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function RegisterPage() {
     setSuccess("");
 
     try {
-      const response = await fetch("http://localhost:3004/signup", {
+      const response = await fetch(`${APIConstants.BASE_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

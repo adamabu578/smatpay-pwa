@@ -8,6 +8,14 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://api.smatpay.com.ng/:path*",
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, Wallet } from "lucide-react";
+import { APIConstants } from "@/lib/api-constants";
 
 export default function AirtimePage() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function AirtimePage() {
         amount: amount
       };
       
-      const response = await fetch("http://localhost:3004/airtime", {
+      const response = await fetch(`${APIConstants.BASE_URL}/airtime`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

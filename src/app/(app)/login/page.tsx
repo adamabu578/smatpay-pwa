@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { EyeOff, Eye, Fingerprint } from "lucide-react";
 import SmatPayLogo from "@/components/SmatPayLogo";
+import { APIConstants } from "@/lib/api-constants";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function LoginPage() {
     try {
       console.log("Sending login payload:", { email, password });
       
-      const response = await fetch("http://localhost:3004/login", {
+      const response = await fetch(`${APIConstants.BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

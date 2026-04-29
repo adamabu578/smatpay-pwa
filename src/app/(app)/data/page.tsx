@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, Wifi, ChevronDown, Phone, User, Wallet, CheckCircle2 } from "lucide-react";
+import { APIConstants } from "@/lib/api-constants";
 
 interface Bundle {
   id: string;
@@ -30,7 +31,7 @@ export default function DataPage() {
       setIsLoadingBundles(true);
       try {
         const token = localStorage.getItem("token") || "";
-        const response = await fetch(`http://localhost:3004/data/bundle/${selectedNetwork.toLowerCase()}`, {
+        const response = await fetch(`${APIConstants.BASE_URL}/data/bundle/${selectedNetwork.toLowerCase()}`, {
           headers: {
             "Authorization": `Bearer ${token}`
           }
@@ -89,7 +90,7 @@ export default function DataPage() {
         amount: selectedBundle?.price
       };
       
-      const response = await fetch("http://localhost:3004/data", {
+      const response = await fetch(`${APIConstants.BASE_URL}/data`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,4 +1,7 @@
+const BASE_URL = process.env.NODE_ENV === "development" ? "/api" : "https://api.smatpay.com.ng";
+
 export const APIConstants = {
-  profileEndpoint: "http://localhost:3004/profile",
-  virtualAccountEndpoint: "http://localhost:3004/virtual-account",
+  BASE_URL,
+  profileEndpoint: `${BASE_URL}/profile`,
+  virtualAccountEndpoint: `${BASE_URL}/virtual-account`,
 };
