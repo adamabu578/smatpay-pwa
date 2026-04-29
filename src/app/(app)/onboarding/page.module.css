@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.statusIcons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.skipContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px;
+}
+
+.skipButton {
+  color: #39B54A;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.skipButton:hover {
+  opacity: 0.7;
+}
+
+.illustrationSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+.imageWrapper {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+.contentSection {
+  background-color: #ffffff;
+  padding: 40px 32px 60px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #4A5568;
+  margin: 0;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #718096;
+  max-width: 280px;
+  margin: 0;
+}
+
+.nextButton {
+  background-color: transparent;
+  border: 1px solid #39B54A;
+  color: #39B54A;
+  padding: 12px 64px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.nextButton:hover {
+  background-color: #39B54A;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pageDot {
+  height: 4px;
+  width: 32px;
+  background-color: #CBD5E0;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+.activeDot {
+  background-color: #4A5568;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contentSection > * {
+  animation: fadeIn 0.8s ease forwards;
+}

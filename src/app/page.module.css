@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.footer {
+  position: absolute;
+  bottom: 60px;
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-size: 28px;
+  letter-spacing: -0.8px;
+  animation: fadeIn 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.textPay {
+  color: #4A5568;
+  font-weight: 700;
+}
+
+.textTrust {
+  color: #A0AEC0;
+  font-weight: 400;
+  margin-left: 1px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
