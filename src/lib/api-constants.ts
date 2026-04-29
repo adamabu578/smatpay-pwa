@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NODE_ENV === "development" ? "/api" : "https://api.smatpay.com.ng";
+const BASE_URL = "/api";
 
 export const APIConstants = {
   BASE_URL,
