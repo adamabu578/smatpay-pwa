@@ -122,7 +122,7 @@ export default function PwaInstallPrompt() {
       ) : (
         <button
           onClick={handleInstallClick}
-          className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[#f97316] py-3.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#ea580c] transition-colors"
+          className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[#7C7AFF] py-3.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#6664E6] transition-colors"
         >
           <Download className="h-5 w-5" />
           Install
