@@ -26,7 +26,7 @@ export default function PwaInstallPrompt() {
     if (isIosDevice) {
       // For iOS, show the prompt after a short delay
       const hasDismissed = localStorage.getItem('pwaPromptDismissed');
-      if (!hasDismissed) {
+      if (!hasDismissed || process.env.NODE_ENV === 'development') {
         const iosTimer = setTimeout(() => {
           setShowPrompt(true);
         }, 2000);
@@ -56,12 +56,9 @@ export default function PwaInstallPrompt() {
       // --- DEVELOPMENT ONLY: Show the prompt for UI testing ---
       let devTimer: NodeJS.Timeout;
       if (process.env.NODE_ENV === 'development') {
-        const hasDismissed = localStorage.getItem('pwaPromptDismissed');
-        if (!hasDismissed) {
-          devTimer = setTimeout(() => {
-            setShowPrompt(true);
-          }, 1000);
-        }
+        devTimer = setTimeout(() => {
+          setShowPrompt(true);
+        }, 1000);
       }
 
       return () => {

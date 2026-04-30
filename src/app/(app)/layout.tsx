@@ -1,5 +1,4 @@
 import React from 'react';
-import PwaInstallPrompt from '@/components/PwaInstallPrompt';
 
 export default function MobileAppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,7 +7,6 @@ export default function MobileAppLayout({ children }: { children: React.ReactNod
         <div className="w-full h-full overflow-y-auto overflow-x-hidden no-scrollbar">
           {children}
         </div>
-        <PwaInstallPrompt />
       </div>
     </div>
   );
