@@ -42,10 +42,10 @@ export default function DataPage() {
         
         if (data.status === "success" && data.data) {
            const mappedBundles = data.data.map((item: any) => ({
-             id: item.variation_code,
-             name: item.name,
-             price: item.variation_amount,
-             variation_code: item.variation_code
+             id: item.variation_code || item.id,
+             name: item.name || item.plan,
+             price: item.variation_amount || item.amount || item.price || "",
+             variation_code: item.variation_code || item.id
            }));
            setDataBundles(mappedBundles);
            if (mappedBundles.length > 0) {
@@ -196,12 +196,16 @@ export default function DataPage() {
           <div>
             <h2 className="text-[17px] font-bold text-white mb-4">Amount</h2>
             <div className="relative">
-              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7C7AFF] font-bold text-[18px]">
+              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-white font-bold text-[18px]">
                 ₦
               </div>
-              <div className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-12 pr-5 text-white text-[18px] font-bold flex items-center">
-                {selectedBundle ? selectedBundle.price : "0.00"}
-              </div>
+              <input
+                type="text"
+                readOnly
+                placeholder="0.00"
+                value={selectedBundle ? selectedBundle.price : ""}
+                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-10 pr-5 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7C7AFF] transition-colors text-[18px] font-bold"
+              />
             </div>
           </div>
 
