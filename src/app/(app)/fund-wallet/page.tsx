@@ -4,27 +4,43 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, RotateCw, Landmark, ChevronRight, Copy } from "lucide-react";
-import { fetchProfileDetails } from "@/lib/profile";
+import { fetchProfileDetails, generateVirtualAccount } from "@/lib/profile";
 
 export default function FundWalletPage() {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
   const [profile, setProfile] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const loadProfile = async (forceRefresh = false) => {
+    try {
+      setIsLoading(true);
+      const data = await fetchProfileDetails(forceRefresh);
+      setProfile(data);
+    } catch (err) {
+      console.error("Failed to load profile:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const loadProfile = async () => {
-      try {
-        const data = await fetchProfileDetails();
-        setProfile(data);
-      } catch (err) {
-        console.error("Failed to load profile:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     loadProfile();
   }, []);
+
+
+  const handleGenerateAccount = async () => {
+    try {
+      setIsGenerating(true);
+      await generateVirtualAccount("payscribe");
+      await loadProfile(); // Refresh profile to get the new account
+    } catch (err: any) {
+      alert(err.message || "Failed to generate account");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   const virtualAccounts = profile?.virtualAccounts || [];
   const payscribeAccount = virtualAccounts.find(
@@ -86,7 +102,17 @@ export default function FundWalletPage() {
                 <p className="text-[#8683a1] text-[14px]">{virtualAccount.bankName || virtualAccount.provider}</p>
               </>
             ) : (
-              <p className="text-white text-[16px] mb-1">No Virtual Account Generated. Go to Profile to generate one.</p>
+              <div className="flex flex-col gap-3 items-start mt-2">
+                <p className="text-white text-[15px]">No Virtual Account Generated.</p>
+                <button 
+                  onClick={handleGenerateAccount}
+                  disabled={isGenerating}
+                  className="bg-[#7c80ff] text-white px-5 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 hover:bg-[#6b6eed] transition-colors disabled:opacity-50"
+                >
+                  {isGenerating ? <RotateCw className="animate-spin" size={16} /> : <Landmark size={16} />}
+                  Create Virtual Account
+                </button>
+              </div>
             )}
           </div>
 

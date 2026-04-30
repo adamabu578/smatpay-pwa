@@ -15,6 +15,7 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState("");
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const loadProfile = async (forceRefresh = false) => {
     try {
@@ -69,7 +70,7 @@ export default function ProfilePage() {
             {/* Avatar with purple border */}
             <div className="w-24 h-24 rounded-full border-4 border-[#7c80ff] flex items-center justify-center overflow-hidden bg-[#fcd385]">
               <img 
-                src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${profile?.firstName || 'user'}&backgroundColor=fcd385`} 
+                src="/user.png" 
                 alt="User Avatar" 
                 className="w-full h-full object-cover"
               />
@@ -213,7 +214,7 @@ export default function ProfilePage() {
 
         {/* Log Out Button */}
         <button 
-          onClick={handleLogout}
+          onClick={() => setShowLogoutConfirm(true)}
           className="w-full bg-[#3e1e2d] text-[#ff4b4b] py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#4a2234] transition-colors"
         >
           <LogOut size={20} strokeWidth={2} />
@@ -221,6 +222,30 @@ export default function ProfilePage() {
         </button>
 
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-6 animate-in fade-in duration-200">
+          <div className="bg-[#1a1625] rounded-[32px] w-full max-w-sm p-8 text-center shadow-xl animate-in zoom-in-95 duration-200">
+            <h2 className="text-white text-2xl font-bold mb-4">Logout</h2>
+            <p className="text-white text-[18px] mb-8">Are you sure you want to log out?</p>
+            <div className="flex gap-4">
+              <button 
+                onClick={() => setShowLogoutConfirm(false)}
+                className="flex-1 py-4 rounded-full border-2 border-[#ff4b4b] text-[#d1d5db] font-medium text-[16px] hover:bg-[#ff4b4b]/10 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleLogout}
+                className="flex-1 py-4 rounded-full bg-[#ff4b4b] text-white font-medium text-[16px] hover:bg-[#ff3333] transition-colors"
+              >
+                Yes, Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 bg-[#130f28] border-t border-[#3e3863] px-6 py-4 flex justify-between items-center z-50">

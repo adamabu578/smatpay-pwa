@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, Wifi, ChevronDown, Phone, User, Wallet, CheckCircle2 } from "lucide-react";
 import { APIConstants } from "@/lib/api-constants";
+import { PaymentSuccess } from "@/components/PaymentSuccess";
 
 interface Bundle {
   id: string;
@@ -25,6 +26,7 @@ export default function DataPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [transactionId, setTransactionId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBundles = async () => {
@@ -102,12 +104,9 @@ export default function DataPage() {
       const data = await response.json();
       
       if (data.status === "success") {
-        setSuccessMessage(`Transaction successful! ID: ${data.data?.transactionId || "N/A"}`);
-        setTimeout(() => {
-          setIsProcessing(false);
-          setShowConfirm(false);
-          router.push("/dashboard");
-        }, 2000);
+        setIsProcessing(false);
+        setShowConfirm(false);
+        setTransactionId(data.data?.transactionId || "N/A");
       } else {
         setErrorMessage(data.msg || "Transaction failed");
         setIsProcessing(false);
@@ -119,10 +118,10 @@ export default function DataPage() {
   };
 
   const networks = [
-    { id: "MTN", name: "MTN", logoColor: "#FFCC00" },
-    { id: "GLO", name: "GLO", logoColor: "#009933" },
-    { id: "AIRTEL", name: "AIRTEL", logoColor: "#FF0000" },
-    { id: "9mobile", name: "9mobile", logoColor: "#006600" },
+    { id: "MTN", name: "MTN", image: "/mtn.png" },
+    { id: "GLO", name: "GLO", image: "/glo.png" },
+    { id: "AIRTEL", name: "AIRTEL", image: "/airtel.png" },
+    { id: "9mobile", name: "9mobile", image: "/9mobile.png" },
   ];
 
   return (
@@ -157,10 +156,9 @@ export default function DataPage() {
                 }`}
               >
                 <div 
-                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-2 font-bold text-[10px]"
-                  style={{ backgroundColor: net.logoColor, color: net.id === "MTN" ? "black" : "white" }}
+                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-2 overflow-hidden bg-white"
                 >
-                  {net.name}
+                  <img src={net.image} alt={net.name} className="w-full h-full object-cover" />
                 </div>
                 <span className={`text-[12px] font-medium ${selectedNetwork === net.id ? "text-[#7c80ff]" : "text-[#d1d5db]"}`}>
                   {net.name}
@@ -361,6 +359,15 @@ export default function DataPage() {
             </div>
           </div>
         </>
+      )}
+
+      {/* Success Screen */}
+      {transactionId && (
+        <PaymentSuccess 
+          transactionId={transactionId}
+          onDone={() => router.push("/dashboard")}
+          onViewReceipt={() => router.push("/transactions")}
+        />
       )}
     </div>
   );

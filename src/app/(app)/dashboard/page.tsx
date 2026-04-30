@@ -41,7 +41,7 @@ export default function DashboardPage() {
           <div className="w-12 h-12 rounded-full bg-[#fcd385] flex items-center justify-center overflow-hidden">
             {/* Avatar Image Placeholder */}
             <img 
-              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${profile?.firstName || 'user'}&backgroundColor=fcd385`} 
+              src="/user.png" 
               alt="User Avatar" 
               className="w-full h-full object-cover"
             />

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, Wallet } from "lucide-react";
 import { APIConstants } from "@/lib/api-constants";
+import { PaymentSuccess } from "@/components/PaymentSuccess";
 
 export default function AirtimePage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function AirtimePage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [transactionId, setTransactionId] = useState<string | null>(null);
 
   const handleProceed = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,12 +51,9 @@ export default function AirtimePage() {
       const data = await response.json();
       
       if (data.status === "success") {
-        setSuccessMessage(`Transaction successful! ID: ${data.data?.transactionId || "N/A"}`);
-        setTimeout(() => {
-          setIsProcessing(false);
-          setShowConfirm(false);
-          router.push("/dashboard");
-        }, 2000);
+        setIsProcessing(false);
+        setShowConfirm(false);
+        setTransactionId(data.data?.transactionId || "N/A");
       } else {
         setErrorMessage(data.msg || "Transaction failed");
         setIsProcessing(false);
@@ -66,10 +65,10 @@ export default function AirtimePage() {
   };
 
   const networks = [
-    { id: "MTN", name: "MTN", logoColor: "#FFCC00" },
-    { id: "Airtel", name: "Airtel", logoColor: "#FF0000" },
-    { id: "Glo", name: "Glo", logoColor: "#009933" },
-    { id: "9mobile", name: "9mobile", logoColor: "#006600" },
+    { id: "MTN", name: "MTN", image: "/mtn.png" },
+    { id: "Airtel", name: "Airtel", image: "/airtel.png" },
+    { id: "Glo", name: "Glo", image: "/glo.png" },
+    { id: "9mobile", name: "9mobile", image: "/9mobile.png" },
   ];
 
   return (
@@ -104,10 +103,9 @@ export default function AirtimePage() {
                 }`}
               >
                 <div 
-                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-2 font-bold text-[10px]"
-                  style={{ backgroundColor: net.logoColor, color: net.id === "MTN" ? "black" : "white" }}
+                  className="w-10 h-10 rounded-lg flex items-center justify-center mb-2 overflow-hidden bg-white"
                 >
-                  {net.name}
+                  <img src={net.image} alt={net.name} className="w-full h-full object-cover" />
                 </div>
                 <span className={`text-[12px] font-medium ${selectedNetwork === net.id ? "text-[#7c80ff]" : "text-[#d1d5db]"}`}>
                   {net.name}
@@ -250,6 +248,15 @@ export default function AirtimePage() {
             </div>
           </div>
         </>
+      )}
+
+      {/* Success Screen */}
+      {transactionId && (
+        <PaymentSuccess 
+          transactionId={transactionId}
+          onDone={() => router.push("/dashboard")}
+          onViewReceipt={() => router.push("/transactions")}
+        />
       )}
     </div>
   );
