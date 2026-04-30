@@ -14,7 +14,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [createVirtualAccount, setCreateVirtualAccount] = useState(false);
+
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -43,7 +43,7 @@ export default function RegisterPage() {
           email,
           phone: phoneNumber,
           password,
-          assignNuban: createVirtualAccount ? "yes" : "no",
+          assignNuban: "no",
         }),
       });
 
@@ -192,37 +192,9 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {/* Bank Account Setup Section */}
-          <div className="mb-4">
-            <h2 className="text-xl font-bold text-white mb-4 tracking-tight">Bank Account Setup</h2>
-            <label className="flex items-center gap-4 bg-[#1e1936] rounded-2xl p-4 cursor-pointer border border-transparent hover:border-[#3e3863] transition-colors">
-              <div className="relative flex items-center justify-center">
-                <input
-                  type="checkbox"
-                  checked={createVirtualAccount}
-                  onChange={(e) => setCreateVirtualAccount(e.target.checked)}
-                  className="w-5 h-5 appearance-none border-2 border-gray-400 rounded-md checked:bg-transparent checked:border-white transition-all cursor-pointer peer"
-                />
-                <svg
-                  className="absolute w-3 h-3 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity"
-                  viewBox="0 0 14 10"
-                  fill="none"
-                >
-                  <path
-                    d="M1 5L4.5 8.5L13 1"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="text-[#d1d5db] text-[15px]">Create virtual account (NUBAN)</span>
-            </label>
-          </div>
 
           {/* Terms & Conditions */}
-          <div className="mt-auto mb-4">
+          <div className="mt-8 mb-6">
             <label className="flex items-start gap-4 cursor-pointer">
               <div className="relative flex items-center justify-center mt-1">
                 <input
