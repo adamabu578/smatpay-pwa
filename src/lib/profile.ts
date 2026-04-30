@@ -115,3 +115,32 @@ export async function generateVirtualAccount(provider = "payscribe"): Promise<Re
   
   return data;
 }
+
+export async function fetchWalletBalance(): Promise<number> {
+  console.log("🌐 Fetching fresh wallet balance from API...");
+  const token = getAuthToken();
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+  try {
+    const res = await fetch(APIConstants.balanceEndpoint, {
+      headers: buildHeaders(token),
+      signal: controller.signal,
+    });
+
+    if (!res.ok)
+      throw new Error(`Server responded with status ${res.status}`);
+
+    const json = await res.json();
+    const data = handleResponse(json);
+
+    return Number(data.wallet) || 0;
+  } catch (err: unknown) {
+    if ((err as { name?: string }).name === "AbortError")
+      throw new Error("Request timeout. Please check your connection.");
+    throw err;
+  } finally {
+    clearTimeout(timeout);
+  }
+}

@@ -26,7 +26,11 @@ export default function FundWalletPage() {
     loadProfile();
   }, []);
 
-  const virtualAccount = profile?.virtualAccounts?.[0];
+  const virtualAccounts = profile?.virtualAccounts || [];
+  const payscribeAccount = virtualAccounts.find(
+    (acc: any) => acc.provider?.toLowerCase() === "payscribe"
+  );
+  const virtualAccount = payscribeAccount || virtualAccounts[0];
 
   const handleCopy = () => {
     if (virtualAccount?.accountNumber) {

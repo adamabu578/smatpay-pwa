@@ -8,24 +8,29 @@ import {
   Monitor, Zap, GraduationCap, Gift,
   Home, Grid, Wallet, User
 } from "lucide-react";
-import { fetchProfileDetails } from "@/lib/profile";
+import { fetchProfileDetails, fetchWalletBalance } from "@/lib/profile";
 
 export default function DashboardPage() {
   const [profile, setProfile] = useState<any>(null);
+  const [balance, setBalance] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadProfile = async () => {
+    const loadData = async () => {
       try {
-        const data = await fetchProfileDetails();
-        setProfile(data);
+        const [profileData, balanceData] = await Promise.all([
+          fetchProfileDetails(),
+          fetchWalletBalance()
+        ]);
+        setProfile(profileData);
+        setBalance(balanceData);
       } catch (err) {
-        console.error("Failed to load profile:", err);
+        console.error("Failed to load dashboard data:", err);
       } finally {
         setIsLoading(false);
       }
     };
-    loadProfile();
+    loadData();
   }, []);
 
   return (
@@ -70,7 +75,7 @@ export default function DashboardPage() {
               <Eye size={16} />
             </div>
             <h2 className="text-4xl font-bold text-white mb-6">
-              {isLoading ? "₦..." : `₦${profile?.balance || profile?.walletBalance || profile?.wallet_balance || '0.00'}`}
+              {isLoading ? "₦..." : `₦${(balance ?? 0).toFixed(2)}`}
             </h2>
             
             <div className="flex gap-4">
