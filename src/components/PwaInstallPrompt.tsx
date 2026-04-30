@@ -92,7 +92,7 @@ export default function PwaInstallPrompt() {
   if (!showPrompt) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-[368px] rounded-[1.5rem] bg-white p-5 shadow-xl ring-1 ring-black/5">
+    <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-[340px] rounded-[1.25rem] bg-white p-4 shadow-xl ring-1 ring-black/5">
       <button
         onClick={dismissPrompt}
         className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 transition-colors"
@@ -100,31 +100,31 @@ export default function PwaInstallPrompt() {
         <X className="h-5 w-5" />
       </button>
 
-      <div className="flex items-start gap-4 mb-5 mr-6">
-        <div className="flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-[1rem] bg-black overflow-hidden relative shadow-sm">
-          <Image src="/smatpay.png" alt="SmatPay Logo" width={36} height={36} className="object-contain" />
+      <div className="flex items-start gap-3 mb-3 mr-6">
+        <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[0.8rem] bg-black overflow-hidden relative shadow-sm">
+          <Image src="/smatpay.png" alt="SmatPay Logo" width={28} height={28} className="object-contain" />
         </div>
         <div className="flex flex-col pt-0.5">
-          <h3 className="text-[17px] font-bold text-gray-900 mb-1 leading-tight">Install SmatPay App</h3>
-          <p className="text-[14px] text-gray-500 leading-snug pr-2">
+          <h3 className="text-[15px] font-bold text-gray-900 mb-0.5 leading-tight">Install SmatPay App</h3>
+          <p className="text-[13px] text-gray-500 leading-snug pr-2">
             {isIOS ? "Install this app on your iPhone or iPad for a better experience." : "Add SmatPay to your home screen for quick and easy access."}
           </p>
         </div>
       </div>
 
       {isIOS ? (
-        <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 p-4 border border-gray-100">
-           <p className="text-[14px] text-gray-600 text-center font-medium flex flex-wrap items-center justify-center gap-1">
-             Tap the <Share className="h-4 w-4 mx-1" /> Share button
+        <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 p-3 border border-gray-100">
+           <p className="text-[13px] text-gray-600 text-center font-medium flex flex-wrap items-center justify-center gap-1">
+             Tap the <Share className="h-3.5 w-3.5 mx-1" /> Share button
              below and select <strong className="whitespace-nowrap text-gray-900">"Add to Home Screen"</strong>
            </p>
         </div>
       ) : (
         <button
           onClick={handleInstallClick}
-          className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[#7C7AFF] py-3.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#6664E6] transition-colors"
+          className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-[#7C7AFF] py-2.5 text-[14px] font-bold text-white shadow-sm hover:bg-[#6664E6] transition-colors"
         >
-          <Download className="h-5 w-5" />
+          <Download className="h-4 w-4" />
           Install
         </button>
       )}
