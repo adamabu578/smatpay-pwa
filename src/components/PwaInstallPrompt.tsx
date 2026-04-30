@@ -25,13 +25,10 @@ export default function PwaInstallPrompt() {
 
     if (isIosDevice) {
       // For iOS, show the prompt after a short delay
-      const hasDismissed = localStorage.getItem('pwaPromptDismissed');
-      if (!hasDismissed || process.env.NODE_ENV === 'development') {
-        const iosTimer = setTimeout(() => {
-          setShowPrompt(true);
-        }, 2000);
-        return () => clearTimeout(iosTimer);
-      }
+      const iosTimer = setTimeout(() => {
+        setShowPrompt(true);
+      }, 2000);
+      return () => clearTimeout(iosTimer);
     } else {
       const handleBeforeInstallPrompt = (e: any) => {
         // Prevent the mini-infobar from appearing on mobile
@@ -49,14 +46,10 @@ export default function PwaInstallPrompt() {
       });
 
       // Show the prompt UI after a short delay, even if beforeinstallprompt hasn't fired yet
-      // This guarantees the UI appears in production.
       let androidTimer: NodeJS.Timeout;
-      const hasDismissed = localStorage.getItem('pwaPromptDismissed');
-      if (!hasDismissed || process.env.NODE_ENV === 'development') {
-        androidTimer = setTimeout(() => {
-          setShowPrompt(true);
-        }, 2500);
-      }
+      androidTimer = setTimeout(() => {
+        setShowPrompt(true);
+      }, 2500);
 
       return () => {
         window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
@@ -67,7 +60,8 @@ export default function PwaInstallPrompt() {
 
   const dismissPrompt = () => {
     setShowPrompt(false);
-    localStorage.setItem('pwaPromptDismissed', 'true');
+    // You can re-enable this later if you want to remember dismissals
+    // localStorage.setItem('pwaPromptDismissed', 'true');
   };
 
   const handleInstallClick = async () => {
@@ -89,7 +83,7 @@ export default function PwaInstallPrompt() {
     // We've used the prompt, and can't use it again, throw it away
     setDeferredPrompt(null);
     if (outcome === 'accepted') {
-      setShowPrompt(false); // Don't save to localStorage if installed, so it handles properly based on state
+      setShowPrompt(false); 
     } else {
       dismissPrompt();
     }
@@ -98,37 +92,37 @@ export default function PwaInstallPrompt() {
   if (!showPrompt) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-[368px] rounded-[1.5rem] bg-[#1E1544] p-5 shadow-2xl ring-1 ring-white/10">
+    <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-[368px] rounded-[1.5rem] bg-white p-5 shadow-xl ring-1 ring-black/5">
       <button
         onClick={dismissPrompt}
-        className="absolute right-4 top-4 text-gray-400 hover:text-white transition-colors"
+        className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 transition-colors"
       >
         <X className="h-5 w-5" />
       </button>
 
       <div className="flex items-start gap-4 mb-5 mr-6">
-        <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[0.8rem] bg-black overflow-hidden relative">
-          <Image src="/smatpay.png" alt="SmatPay Logo" width={32} height={32} className="object-contain" />
+        <div className="flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-[1rem] bg-black overflow-hidden relative shadow-sm">
+          <Image src="/smatpay.png" alt="SmatPay Logo" width={36} height={36} className="object-contain" />
         </div>
         <div className="flex flex-col pt-0.5">
-          <h3 className="text-[17px] font-bold text-white mb-1 leading-tight">Install SmatPay App</h3>
-          <p className="text-[14px] text-gray-300 leading-snug">
+          <h3 className="text-[17px] font-bold text-gray-900 mb-1 leading-tight">Install SmatPay App</h3>
+          <p className="text-[14px] text-gray-500 leading-snug pr-2">
             {isIOS ? "Install this app on your iPhone or iPad for a better experience." : "Add SmatPay to your home screen for quick and easy access."}
           </p>
         </div>
       </div>
 
       {isIOS ? (
-        <div className="flex flex-col items-center justify-center rounded-xl bg-white/5 p-4 border border-[#7C7AFF]/30">
-           <p className="text-[14px] text-gray-200 text-center font-medium flex flex-wrap items-center justify-center gap-1">
+        <div className="flex flex-col items-center justify-center rounded-xl bg-gray-50 p-4 border border-gray-100">
+           <p className="text-[14px] text-gray-600 text-center font-medium flex flex-wrap items-center justify-center gap-1">
              Tap the <Share className="h-4 w-4 mx-1" /> Share button
-             below and select <strong className="whitespace-nowrap text-white">"Add to Home Screen"</strong>
+             below and select <strong className="whitespace-nowrap text-gray-900">"Add to Home Screen"</strong>
            </p>
         </div>
       ) : (
         <button
           onClick={handleInstallClick}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#7C7AFF] py-3.5 text-[16px] font-bold text-white shadow-sm hover:opacity-90 transition-opacity"
+          className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[#f97316] py-3.5 text-[16px] font-bold text-white shadow-sm hover:bg-[#ea580c] transition-colors"
         >
           <Download className="h-5 w-5" />
           Install
