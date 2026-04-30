@@ -46,7 +46,7 @@ const FAQ = () => {
     ];
 
     return (
-        <section id="faqs" className="py-24 bg-[#130f28] text-white">
+        <section id="faqs" className="py-24 bg-[#1E1544] text-white">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col md:flex-row gap-16">
                     <div className="w-full md:w-1/3">
@@ -63,7 +63,7 @@ const FAQ = () => {
                     </div>
 
                     <div className="w-full md:w-2/3">
-                        <div className="bg-[#1e1936] p-8 md:p-12 rounded-[2rem] border border-[#3e3863] shadow-sm">
+                        <div className="bg-[#251A5A] p-8 md:p-12 rounded-[2rem] border border-[#3e3863] shadow-sm">
                             {faqs.map((faq, index) => (
                                 <FAQItem key={index} {...faq} />
                             ))}

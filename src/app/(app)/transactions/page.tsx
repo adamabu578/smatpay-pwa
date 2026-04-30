@@ -54,7 +54,7 @@ export default function TransactionsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white font-sans">
+    <div className="min-h-screen bg-[#1E1544] text-white font-sans">
       {/* Header */}
       <header className="px-6 pt-12 pb-6 flex items-center gap-4">
         <button onClick={() => router.back()} className="text-white hover:text-gray-300 transition-colors">
@@ -67,18 +67,18 @@ export default function TransactionsPage() {
         
         {/* Search Bar */}
         <div className="relative">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#7c80ff]">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#7C7AFF]">
             <Search size={20} strokeWidth={1.5} />
           </div>
           <input
             type="text"
             placeholder="Search transactions..."
-            className="w-full bg-transparent border border-[#3e3863] rounded-[18px] py-4 pl-12 pr-4 text-white placeholder-[#3e3863] focus:outline-none focus:border-[#7c80ff] transition-colors text-[15px]"
+            className="w-full bg-transparent border border-[#3e3863] rounded-[18px] py-4 pl-12 pr-4 text-white placeholder-[#3e3863] focus:outline-none focus:border-[#7C7AFF] transition-colors text-[15px]"
           />
         </div>
 
         {/* Summary Card */}
-        <div className="bg-[#7c80ff] rounded-3xl p-5 flex items-center justify-between shadow-lg shadow-[#7c80ff]/20">
+        <div className="bg-[#7C7AFF] rounded-3xl p-5 flex items-center justify-between shadow-lg shadow-[#7C7AFF]/20">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-white backdrop-blur-sm">
               <BarChart2 size={24} strokeWidth={1.5} />
@@ -102,8 +102,8 @@ export default function TransactionsPage() {
               onClick={() => setActiveFilter(filter)}
               className={`px-5 py-2.5 rounded-full whitespace-nowrap text-[14px] font-medium transition-colors border ${
                 activeFilter === filter
-                  ? "bg-[#7c80ff] border-[#7c80ff] text-white"
-                  : "bg-transparent border-[#3e3863] text-[#d1d5db] hover:border-[#7c80ff]"
+                  ? "bg-[#7C7AFF] border-[#7C7AFF] text-white"
+                  : "bg-transparent border-[#3e3863] text-[#d1d5db] hover:border-[#7C7AFF]"
               }`}
             >
               {filter}
@@ -114,9 +114,9 @@ export default function TransactionsPage() {
         {/* Transaction List */}
         <div className="space-y-3">
           {transactions.map((tx) => (
-            <div key={tx.id} className="bg-[#1e1936] rounded-2xl p-4 flex items-center justify-between hover:bg-[#282245] transition-colors cursor-pointer">
+            <div key={tx.id} className="bg-[#251A5A] rounded-2xl p-4 flex items-center justify-between hover:bg-[#302273] transition-colors cursor-pointer">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-[14px] bg-[#130f28] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-[14px] bg-[#1E1544] flex items-center justify-center">
                   {tx.type === "wallet" ? (
                     <RefreshCcw size={20} className="text-[#4caf50]" strokeWidth={1.5} />
                   ) : (

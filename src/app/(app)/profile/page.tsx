@@ -53,11 +53,11 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white font-sans pb-24">
+    <div className="min-h-screen bg-[#1E1544] text-white font-sans pb-24">
       {/* Top Header */}
       <header className="px-6 pt-12 pb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-white">Profile</h1>
-        <button className="w-10 h-10 rounded-2xl bg-[#1e1936] flex items-center justify-center text-[#8683a1] hover:text-white transition-colors">
+        <button className="w-10 h-10 rounded-2xl bg-[#251A5A] flex items-center justify-center text-[#8683a1] hover:text-white transition-colors">
           <Settings size={20} strokeWidth={1.5} />
         </button>
       </header>
@@ -65,10 +65,10 @@ export default function ProfilePage() {
       <div className="px-6 space-y-6">
         
         {/* User Info Card */}
-        <div className="bg-[#1e1936] rounded-3xl p-8 flex flex-col items-center justify-center relative shadow-sm">
+        <div className="bg-[#251A5A] rounded-3xl p-8 flex flex-col items-center justify-center relative shadow-sm">
           <div className="relative mb-4">
             {/* Avatar with purple border */}
-            <div className="w-24 h-24 rounded-full border-4 border-[#7c80ff] flex items-center justify-center overflow-hidden bg-[#fcd385]">
+            <div className="w-24 h-24 rounded-full border-4 border-[#7C7AFF] flex items-center justify-center overflow-hidden bg-[#fcd385]">
               <img 
                 src="/user.png" 
                 alt="User Avatar" 
@@ -96,19 +96,19 @@ export default function ProfilePage() {
 
         {/* Virtual Account Section (Payscribe) */}
         {!isLoading && profile && (
-          <div className="bg-[#1e1936] rounded-3xl p-6 shadow-sm border border-[#3e3863]/50">
+          <div className="bg-[#251A5A] rounded-3xl p-6 shadow-sm border border-[#3e3863]/50">
             <h3 className="text-white font-bold text-[16px] mb-4 flex items-center gap-2">
-              <Wallet size={18} className="text-[#7c80ff]" />
+              <Wallet size={18} className="text-[#7C7AFF]" />
               Virtual Account
             </h3>
             
             {profile.virtualAccounts && profile.virtualAccounts.length > 0 ? (
               <div className="space-y-4">
                 {profile.virtualAccounts.map((account: any, idx: number) => (
-                  <div key={idx} className="bg-[#130f28] p-4 rounded-2xl flex flex-col gap-2">
+                  <div key={idx} className="bg-[#1E1544] p-4 rounded-2xl flex flex-col gap-2">
                     <div className="flex justify-between items-center">
                       <span className="text-[#8683a1] text-xs uppercase">{account.bankName}</span>
-                      <span className="text-[#7c80ff] text-xs font-bold uppercase">{account.provider}</span>
+                      <span className="text-[#7C7AFF] text-xs font-bold uppercase">{account.provider}</span>
                     </div>
                     <div className="flex justify-between items-end">
                       <div>
@@ -117,7 +117,7 @@ export default function ProfilePage() {
                       </div>
                       <button 
                         onClick={() => navigator.clipboard.writeText(account.accountNumber)}
-                        className="p-2 rounded-xl bg-[#282245] text-[#d1d5db] hover:text-white transition-colors"
+                        className="p-2 rounded-xl bg-[#302273] text-[#d1d5db] hover:text-white transition-colors"
                         title="Copy Account Number"
                       >
                         <Copy size={16} />
@@ -132,7 +132,7 @@ export default function ProfilePage() {
                 <button 
                   onClick={handleGenerateAccount}
                   disabled={isGenerating}
-                  className="bg-[#7c80ff] text-white px-5 py-3 rounded-xl font-medium text-sm flex items-center gap-2 hover:bg-[#6b6eed] transition-colors disabled:opacity-50"
+                  className="bg-[#7C7AFF] text-white px-5 py-3 rounded-xl font-medium text-sm flex items-center gap-2 hover:bg-[#6664E6] transition-colors disabled:opacity-50"
                 >
                   {isGenerating ? <RefreshCw className="animate-spin" size={16} /> : <Wallet size={16} />}
                   Connect to Payscribe
@@ -143,12 +143,12 @@ export default function ProfilePage() {
         )}
 
         {/* Menu Items */}
-        <div className="bg-[#1e1936] rounded-3xl p-4 space-y-2">
+        <div className="bg-[#251A5A] rounded-3xl p-4 space-y-2">
           
-          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#282245] transition-colors group">
+          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#302273] transition-colors group">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#282245] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
-                <User size={20} className="text-[#7c80ff]" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-2xl bg-[#302273] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
+                <User size={20} className="text-[#7C7AFF]" strokeWidth={1.5} />
               </div>
               <div className="text-left">
                 <h3 className="text-white font-bold text-[15px] mb-0.5">Personal Information</h3>
@@ -158,10 +158,10 @@ export default function ProfilePage() {
             <ChevronRight size={20} className="text-[#8683a1]" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#282245] transition-colors group">
+          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#302273] transition-colors group">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#282245] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
-                <Gift size={20} className="text-[#7c80ff]" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-2xl bg-[#302273] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
+                <Gift size={20} className="text-[#7C7AFF]" strokeWidth={1.5} />
               </div>
               <div className="text-left">
                 <h3 className="text-white font-bold text-[15px] mb-0.5">Refer and Earn</h3>
@@ -171,10 +171,10 @@ export default function ProfilePage() {
             <ChevronRight size={20} className="text-[#8683a1]" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#282245] transition-colors group">
+          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#302273] transition-colors group">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#282245] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
-                <Headphones size={20} className="text-[#7c80ff]" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-2xl bg-[#302273] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
+                <Headphones size={20} className="text-[#7C7AFF]" strokeWidth={1.5} />
               </div>
               <div className="text-left">
                 <h3 className="text-white font-bold text-[15px] mb-0.5">Help & Support</h3>
@@ -184,10 +184,10 @@ export default function ProfilePage() {
             <ChevronRight size={20} className="text-[#8683a1]" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#282245] transition-colors group">
+          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#302273] transition-colors group">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#282245] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
-                <ShieldCheck size={20} className="text-[#7c80ff]" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-2xl bg-[#302273] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
+                <ShieldCheck size={20} className="text-[#7C7AFF]" strokeWidth={1.5} />
               </div>
               <div className="text-left">
                 <h3 className="text-white font-bold text-[15px] mb-0.5">Privacy & Security</h3>
@@ -197,10 +197,10 @@ export default function ProfilePage() {
             <ChevronRight size={20} className="text-[#8683a1]" />
           </button>
 
-          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#282245] transition-colors group">
+          <button className="w-full flex items-center justify-between p-3 rounded-2xl hover:bg-[#302273] transition-colors group">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#282245] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
-                <Star size={20} className="text-[#7c80ff]" strokeWidth={1.5} />
+              <div className="w-12 h-12 rounded-2xl bg-[#302273] flex items-center justify-center group-hover:bg-[#3e3863] transition-colors">
+                <Star size={20} className="text-[#7C7AFF]" strokeWidth={1.5} />
               </div>
               <div className="text-left">
                 <h3 className="text-white font-bold text-[15px] mb-0.5">Rate Us</h3>
@@ -248,7 +248,7 @@ export default function ProfilePage() {
       )}
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#130f28] border-t border-[#3e3863] px-6 py-4 flex justify-between items-center z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#1E1544] border-t border-[#3e3863] px-6 py-4 flex justify-between items-center z-50">
         <Link href="/dashboard" className="flex flex-col items-center gap-1 group">
           <div className="w-14 h-10 rounded-2xl flex items-center justify-center transition-colors">
             <Home className="text-[#8683a1] group-hover:text-white" size={22} strokeWidth={1.5} />
@@ -268,10 +268,10 @@ export default function ProfilePage() {
           <span className="text-[12px] font-medium text-[#8683a1] group-hover:text-white transition-colors">Wallet</span>
         </Link>
         <Link href="/profile" className="flex flex-col items-center gap-1 group">
-          <div className="w-14 h-10 rounded-2xl bg-[#282245] flex items-center justify-center transition-colors">
-            <User className="text-[#7c80ff]" size={22} strokeWidth={1.5} />
+          <div className="w-14 h-10 rounded-2xl bg-[#302273] flex items-center justify-center transition-colors">
+            <User className="text-[#7C7AFF]" size={22} strokeWidth={1.5} />
           </div>
-          <span className="text-[12px] font-medium text-[#7c80ff]">Profile</span>
+          <span className="text-[12px] font-medium text-[#7C7AFF]">Profile</span>
         </Link>
       </div>
       

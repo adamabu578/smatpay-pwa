@@ -5,7 +5,7 @@ import SmatPayLogo from './SmatPayLogo';
 
 const Footer = () => {
     return (
-        <footer id="contact" className="bg-[#1e1936] text-white pt-20 pb-10">
+        <footer id="contact" className="bg-[#251A5A] text-white pt-20 pb-10">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
                     <div className="col-span-1 md:col-span-1">
@@ -45,7 +45,7 @@ const Footer = () => {
                             <input 
                                 type="email" 
                                 placeholder="Enter your email" 
-                                className="w-full bg-[#130f28] border border-[#3e3863] rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all"
+                                className="w-full bg-[#1E1544] border border-[#3e3863] rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-all"
                             />
                             <button className="absolute right-2 top-2 bg-primary text-white p-1 rounded-lg">
                                 <Mail size={20} />

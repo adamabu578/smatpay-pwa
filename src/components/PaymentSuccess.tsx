@@ -29,7 +29,7 @@ export function PaymentSuccess({ transactionId, onDone, onViewReceipt }: Payment
   };
 
   return (
-    <div className="fixed inset-0 bg-[#130f28] z-[100] flex flex-col px-6 pb-12 pt-24 animate-in fade-in duration-300">
+    <div className="fixed inset-0 bg-[#1E1544] z-[100] flex flex-col px-6 pb-12 pt-24 animate-in fade-in duration-300">
       <div className="flex-1 flex flex-col items-center justify-center">
         {/* Success Icon */}
         <div className="w-16 h-16 rounded-full bg-[#1cbba4] flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(28,187,164,0.3)]">
@@ -41,12 +41,12 @@ export function PaymentSuccess({ transactionId, onDone, onViewReceipt }: Payment
         <p className="text-[#8683a1] text-[15px] mb-10">Transaction successful</p>
 
         {/* Transaction ID Card */}
-        <div className="w-full bg-[#1e1936] rounded-[24px] p-6 flex flex-col items-center justify-center gap-2 max-w-xs mx-auto border border-[#3e3863]/30 shadow-sm">
+        <div className="w-full bg-[#251A5A] rounded-[24px] p-6 flex flex-col items-center justify-center gap-2 max-w-xs mx-auto border border-[#3e3863]/30 shadow-sm">
           <span className="text-[#d1d5db] text-[14px]">Transaction ID</span>
           <span className="text-white font-bold text-[20px] tracking-wide mb-1">{transactionId}</span>
           <button 
             onClick={handleCopy}
-            className="flex items-center gap-2 text-[#7c80ff] hover:text-[#6b6eed] transition-colors text-[14px] font-medium mt-2"
+            className="flex items-center gap-2 text-[#7C7AFF] hover:text-[#6664E6] transition-colors text-[14px] font-medium mt-2"
           >
             <Copy size={16} />
             {copied ? "Copied" : "Copy"}
@@ -58,13 +58,13 @@ export function PaymentSuccess({ transactionId, onDone, onViewReceipt }: Payment
       <div className="flex flex-col gap-6 mt-auto max-w-md mx-auto w-full">
         <button
           onClick={handleDone}
-          className="w-full bg-[#7c80ff] text-white rounded-2xl py-4 font-semibold text-[16px] hover:bg-[#6b6eed] transition-colors shadow-sm"
+          className="w-full bg-[#7C7AFF] text-white rounded-2xl py-4 font-semibold text-[16px] hover:bg-[#6664E6] transition-colors shadow-sm"
         >
           Done
         </button>
         <button
           onClick={onViewReceipt}
-          className="w-full text-[#7c80ff] font-medium text-[16px] hover:text-[#6b6eed] transition-colors"
+          className="w-full text-[#7C7AFF] font-medium text-[16px] hover:text-[#6664E6] transition-colors"
         >
           View Receipt
         </button>

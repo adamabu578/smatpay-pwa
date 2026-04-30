@@ -65,7 +65,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white flex justify-center w-full font-sans">
+    <div className="min-h-screen bg-[#1E1544] text-white flex justify-center w-full font-sans">
       {/* Mobile container wrapper */}
       <div className="w-full max-w-md p-6 flex flex-col relative h-full min-h-screen">
         
@@ -81,7 +81,7 @@ export default function RegisterPage() {
 
         {/* Title & Subtitle */}
         <div className="mt-0 mb-4">
-          <h1 className="text-3xl font-bold text-[#7b76e6] mb-2 tracking-tight">Create Your Profile</h1>
+          <h1 className="text-3xl font-bold text-[#7C7AFF] mb-2 tracking-tight">Create Your Profile</h1>
           <p className="text-[#d1d5db] text-[15px] leading-relaxed">
             Enter your name, password and phone number
           </p>
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-sm font-medium"
+                  className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-sm font-medium"
                   required
                 />
               </div>
@@ -129,7 +129,7 @@ export default function RegisterPage() {
                   placeholder="Last Name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-sm font-medium"
+                  className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-sm font-medium"
                   required
                 />
               </div>
@@ -145,7 +145,7 @@ export default function RegisterPage() {
                 placeholder="E-Mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-sm font-medium"
+                className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-sm font-medium"
                 required
               />
             </div>
@@ -160,7 +160,7 @@ export default function RegisterPage() {
                 placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-sm font-medium"
+                className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-sm font-medium"
                 required
               />
             </div>
@@ -175,7 +175,7 @@ export default function RegisterPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-12 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-sm font-medium"
+                className="w-full bg-transparent border border-[#3e3863] rounded-2xl py-4 pl-12 pr-12 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-sm font-medium"
                 required
               />
               <button
@@ -228,7 +228,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#7c80ff] text-white rounded-[20px] py-4 font-semibold text-lg hover:bg-[#6b6eed] transition-colors disabled:opacity-70 flex justify-center items-center"
+            className="w-full bg-[#7C7AFF] text-white rounded-[20px] py-4 font-semibold text-lg hover:bg-[#6664E6] transition-colors disabled:opacity-70 flex justify-center items-center"
           >
             {isLoading ? (
               <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

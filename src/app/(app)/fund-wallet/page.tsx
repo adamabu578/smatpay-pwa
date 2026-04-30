@@ -57,7 +57,7 @@ export default function FundWalletPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white font-sans">
+    <div className="min-h-screen bg-[#1E1544] text-white font-sans">
       {/* Header */}
       <header className="px-6 pt-12 pb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -74,9 +74,9 @@ export default function FundWalletPage() {
       <div className="px-6 pb-12 space-y-4">
         
         {/* Bank Transfer Option */}
-        <div className="bg-[#1e1936] rounded-2xl p-5 flex items-center justify-between cursor-pointer hover:bg-[#282245] transition-colors">
+        <div className="bg-[#251A5A] rounded-2xl p-5 flex items-center justify-between cursor-pointer hover:bg-[#302273] transition-colors">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 flex items-center justify-center text-[#7c80ff]">
+            <div className="w-10 h-10 flex items-center justify-center text-[#7C7AFF]">
               <Landmark size={28} strokeWidth={1.5} />
             </div>
             <div>
@@ -90,7 +90,7 @@ export default function FundWalletPage() {
         </div>
 
         {/* Account Details Card */}
-        <div className="bg-[#1e1936] rounded-2xl p-6">
+        <div className="bg-[#251A5A] rounded-2xl p-6">
           <div className="mb-6">
             <p className="text-[#8683a1] text-[14px] mb-1">SmatPay Account Number</p>
             {isLoading ? (
@@ -107,7 +107,7 @@ export default function FundWalletPage() {
                 <button 
                   onClick={handleGenerateAccount}
                   disabled={isGenerating}
-                  className="bg-[#7c80ff] text-white px-5 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 hover:bg-[#6b6eed] transition-colors disabled:opacity-50"
+                  className="bg-[#7C7AFF] text-white px-5 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 hover:bg-[#6664E6] transition-colors disabled:opacity-50"
                 >
                   {isGenerating ? <RotateCw className="animate-spin" size={16} /> : <Landmark size={16} />}
                   Create Virtual Account
@@ -119,7 +119,7 @@ export default function FundWalletPage() {
           <div className="flex gap-4">
             <button 
               onClick={handleCopy}
-              className="flex-1 bg-transparent border border-[#3e3863] text-white rounded-[14px] py-3.5 font-semibold text-[15px] hover:border-[#7c80ff] transition-colors"
+              className="flex-1 bg-transparent border border-[#3e3863] text-white rounded-[14px] py-3.5 font-semibold text-[15px] hover:border-[#7C7AFF] transition-colors"
             >
               {copied ? "Copied!" : "Copy Number"}
             </button>
@@ -137,9 +137,9 @@ export default function FundWalletPage() {
         </div>
 
         {/* Top-up with Card Option */}
-        <div className="bg-[#1e1936] rounded-2xl p-5 flex items-center justify-between cursor-pointer hover:bg-[#282245] transition-colors">
+        <div className="bg-[#251A5A] rounded-2xl p-5 flex items-center justify-between cursor-pointer hover:bg-[#302273] transition-colors">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 flex items-center justify-center text-[#7c80ff]">
+            <div className="w-10 h-10 flex items-center justify-center text-[#7C7AFF]">
               <Landmark size={28} strokeWidth={1.5} />
             </div>
             <div>

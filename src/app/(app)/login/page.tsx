@@ -53,7 +53,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white flex justify-center w-full font-sans">
+    <div className="min-h-screen bg-[#1E1544] text-white flex justify-center w-full font-sans">
       <div className="w-full max-w-md p-6 flex flex-col relative h-full min-h-screen pt-6">
         
         {/* Header Logo */}
@@ -65,7 +65,7 @@ export default function LoginPage() {
 
         {/* Title & Subtitle */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-[#7b76e6] mb-3 tracking-tight">Hi, Welcome Back!</h1>
+          <h1 className="text-3xl font-bold text-[#7C7AFF] mb-3 tracking-tight">Hi, Welcome Back!</h1>
           <p className="text-white text-[16px] leading-relaxed pr-8">
             Enter your details to sign in to your account
           </p>
@@ -93,7 +93,7 @@ export default function LoginPage() {
                 placeholder="E-Mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-[15px] font-medium"
+                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-4 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-[15px] font-medium"
                 required
               />
             </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-12 text-white placeholder-white focus:outline-none focus:border-[#7b76e6] transition-colors text-[15px] font-medium"
+                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-12 text-white placeholder-white focus:outline-none focus:border-[#7C7AFF] transition-colors text-[15px] font-medium"
                 required
               />
               <button
@@ -156,7 +156,7 @@ export default function LoginPage() {
               </div>
               <span className="text-white text-[15px]">Remember Me</span>
             </label>
-            <Link href="#" className="text-[#a5a6fa] hover:text-[#7b76e6] text-[15px] transition-colors">
+            <Link href="#" className="text-[#a5a6fa] hover:text-[#7C7AFF] text-[15px] transition-colors">
               Forget Password?
             </Link>
           </div>
@@ -165,7 +165,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-[#7c80ff] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6b6eed] transition-colors disabled:opacity-70 flex justify-center items-center mb-4 shadow-sm"
+            className="w-full bg-[#7C7AFF] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6664E6] transition-colors disabled:opacity-70 flex justify-center items-center mb-4 shadow-sm"
           >
             {isLoading ? (
               <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -177,14 +177,14 @@ export default function LoginPage() {
           {/* Create Account Button */}
           <Link 
             href="/register" 
-            className="w-full bg-[#e6e8fa] text-[#7c80ff] rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#d8dbfe] transition-colors flex justify-center items-center shadow-sm block"
+            className="w-full bg-[#e6e8fa] text-[#7C7AFF] rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#d8dbfe] transition-colors flex justify-center items-center shadow-sm block"
           >
             Create Account
           </Link>
           
           {/* Fingerprint Login */}
           <div className="mt-4 flex justify-center items-center gap-3 text-white mb-4">
-            <Fingerprint size={26} strokeWidth={1.5} className="text-[#7c80ff]" />
+            <Fingerprint size={26} strokeWidth={1.5} className="text-[#7C7AFF]" />
             <span className="text-[16px]">Login with fingerprint</span>
           </div>
           

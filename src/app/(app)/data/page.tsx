@@ -125,7 +125,7 @@ export default function DataPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white font-sans relative">
+    <div className="min-h-screen bg-[#1E1544] text-white font-sans relative">
       {/* Header */}
       <header className="px-6 pt-12 pb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -151,8 +151,8 @@ export default function DataPage() {
                 onClick={() => setSelectedNetwork(net.id)}
                 className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all ${
                   selectedNetwork === net.id 
-                    ? "border-[#7c80ff] bg-[#1e1936]" 
-                    : "border-[#3e3863] bg-[#1e1936] opacity-70"
+                    ? "border-[#7C7AFF] bg-[#251A5A]" 
+                    : "border-[#3e3863] bg-[#251A5A] opacity-70"
                 }`}
               >
                 <div 
@@ -160,7 +160,7 @@ export default function DataPage() {
                 >
                   <img src={net.image} alt={net.name} className="w-full h-full object-cover" />
                 </div>
-                <span className={`text-[12px] font-medium ${selectedNetwork === net.id ? "text-[#7c80ff]" : "text-[#d1d5db]"}`}>
+                <span className={`text-[12px] font-medium ${selectedNetwork === net.id ? "text-[#7C7AFF]" : "text-[#d1d5db]"}`}>
                   {net.name}
                 </span>
               </button>
@@ -175,13 +175,13 @@ export default function DataPage() {
           <div>
             <h2 className="text-[17px] font-bold text-white mb-4">Select Data Bundle</h2>
             <div className="relative">
-              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7c80ff]">
+              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7C7AFF]">
                 <Wifi size={20} strokeWidth={2} />
               </div>
               <div 
                 onClick={() => { if (!isLoadingBundles && dataBundles.length > 0) setShowBundleSelect(true); }}
                 className={`w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-12 text-[#d1d5db] flex items-center justify-between transition-colors ${
-                  isLoadingBundles || dataBundles.length === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-[#7c80ff]"
+                  isLoadingBundles || dataBundles.length === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-[#7C7AFF]"
                 }`}
               >
                 <span className="text-[15px] truncate">
@@ -196,7 +196,7 @@ export default function DataPage() {
           <div>
             <h2 className="text-[17px] font-bold text-white mb-4">Amount</h2>
             <div className="relative">
-              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7c80ff] font-bold text-[18px]">
+              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7C7AFF] font-bold text-[18px]">
                 ₦
               </div>
               <div className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-12 pr-5 text-white text-[18px] font-bold flex items-center">
@@ -217,12 +217,12 @@ export default function DataPage() {
                 placeholder="Enter phone number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className="w-full bg-transparent border border-[#7c80ff] rounded-[20px] py-4 pl-14 pr-12 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7c80ff] transition-colors text-[15px] font-medium"
+                className="w-full bg-transparent border border-[#7C7AFF] rounded-[20px] py-4 pl-14 pr-12 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7C7AFF] transition-colors text-[15px] font-medium"
                 required
               />
               <button 
                 type="button" 
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-[#8683a1] hover:text-[#7c80ff] transition-colors"
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-[#8683a1] hover:text-[#7C7AFF] transition-colors"
               >
                 <User size={20} strokeWidth={1.5} />
               </button>
@@ -232,7 +232,7 @@ export default function DataPage() {
           <button
             type="submit"
             disabled={!selectedBundle || isLoadingBundles}
-            className="w-full bg-[#7c80ff] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6b6eed] transition-colors mt-8 shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full bg-[#7C7AFF] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6664E6] transition-colors mt-8 shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
           >
             Proceed to Payment
           </button>
@@ -246,7 +246,7 @@ export default function DataPage() {
             className="fixed inset-0 bg-black/60 z-40 animate-in fade-in duration-200"
             onClick={() => setShowBundleSelect(false)}
           />
-          <div className="fixed bottom-0 left-0 right-0 bg-[#1e1936] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300 max-h-[80vh] flex flex-col">
+          <div className="fixed bottom-0 left-0 right-0 bg-[#251A5A] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300 max-h-[80vh] flex flex-col">
             <div className="w-12 h-1 bg-[#3e3863] rounded-full mx-auto mb-6 shrink-0" />
             <h2 className="text-xl font-bold text-center text-white mb-6 shrink-0">Select Data Bundle</h2>
             
@@ -260,15 +260,15 @@ export default function DataPage() {
                   }}
                   className="flex items-center gap-4 py-4 border-b border-[#3e3863] last:border-0 cursor-pointer group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#130f28] flex items-center justify-center shrink-0">
-                    <Wifi size={20} className="text-[#8683a1] group-hover:text-[#7c80ff] transition-colors" />
+                  <div className="w-12 h-12 rounded-xl bg-[#1E1544] flex items-center justify-center shrink-0">
+                    <Wifi size={20} className="text-[#8683a1] group-hover:text-[#7C7AFF] transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-white font-medium text-[15px] leading-snug mb-1 truncate">{bundle.name}</p>
-                    <p className="text-[#7c80ff] font-bold text-[14px]">₦{bundle.price}</p>
+                    <p className="text-[#7C7AFF] font-bold text-[14px]">₦{bundle.price}</p>
                   </div>
                   {selectedBundle?.id === bundle.id && (
-                    <CheckCircle2 size={22} className="text-[#7c80ff] shrink-0" />
+                    <CheckCircle2 size={22} className="text-[#7C7AFF] shrink-0" />
                   )}
                 </div>
               ))}
@@ -287,13 +287,13 @@ export default function DataPage() {
           />
           
           {/* Modal */}
-          <div className="fixed bottom-0 left-0 right-0 bg-[#1e1936] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300">
+          <div className="fixed bottom-0 left-0 right-0 bg-[#251A5A] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300">
             {/* Drag Handle indicator */}
             <div className="w-12 h-1 bg-[#3e3863] rounded-full mx-auto mb-6" />
             
             <h2 className="text-xl font-bold text-center text-white mb-2">Confirm Purchase</h2>
             <div className="text-center mb-8">
-              <span className="text-3xl font-bold text-[#7c80ff]">₦{selectedBundle?.price}</span>
+              <span className="text-3xl font-bold text-[#7C7AFF]">₦{selectedBundle?.price}</span>
             </div>
 
             {/* Status Messages */}
@@ -308,7 +308,7 @@ export default function DataPage() {
               </div>
             )}
 
-            <div className="bg-[#130f28] rounded-2xl p-5 mb-6">
+            <div className="bg-[#1E1544] rounded-2xl p-5 mb-6">
               <div className="flex justify-between items-center py-3 border-b border-[#3e3863]">
                 <span className="text-[#d1d5db] text-[15px]">Network</span>
                 <span className="text-white font-bold text-[15px] text-right">{selectedNetwork}</span>
@@ -328,9 +328,9 @@ export default function DataPage() {
             </div>
 
             {/* Wallet Section */}
-            <div className="bg-[#130f28] rounded-[20px] p-4 flex items-center justify-between mb-8 border border-[#3e3863]/50">
+            <div className="bg-[#1E1544] rounded-[20px] p-4 flex items-center justify-between mb-8 border border-[#3e3863]/50">
               <div className="flex items-center gap-3">
-                <Wallet className="text-[#7c80ff]" size={20} />
+                <Wallet className="text-[#7C7AFF]" size={20} />
                 <span className="text-[#d1d5db] font-medium">Wallet</span>
               </div>
               <span className="text-white font-bold">₦50.00</span>
@@ -341,7 +341,7 @@ export default function DataPage() {
               <button
                 onClick={handleConfirm}
                 disabled={isProcessing || !!successMessage}
-                className="w-full bg-[#7c80ff] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6b6eed] transition-colors shadow-sm flex justify-center items-center disabled:opacity-70"
+                className="w-full bg-[#7C7AFF] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6664E6] transition-colors shadow-sm flex justify-center items-center disabled:opacity-70"
               >
                 {isProcessing ? (
                   <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

@@ -3,7 +3,7 @@ import { ArrowRight, ArrowLeft, ArrowDown } from 'lucide-react';
 
 const Steps = () => {
     return (
-        <section id="how-it-works" className="py-24 bg-[#1e1936] text-white">
+        <section id="how-it-works" className="py-24 bg-[#251A5A] text-white">
             <div className="container mx-auto px-6 text-center">
                 <span className="px-4 py-1 rounded-full border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4 inline-block">
                     How it works

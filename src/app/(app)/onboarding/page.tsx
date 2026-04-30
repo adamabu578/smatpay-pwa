@@ -38,7 +38,7 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white flex justify-center w-full font-sans overflow-hidden">
+    <div className="min-h-screen bg-[#1E1544] text-white flex justify-center w-full font-sans overflow-hidden">
       <div className="w-full max-w-md p-6 flex flex-col relative h-full min-h-screen pt-4">
         
         {/* Header - Skip Button */}
@@ -77,7 +77,7 @@ export default function OnboardingPage() {
 
               {/* Text Content */}
               <div className="mb-6 mt-4 text-center flex flex-col items-center">
-                <h1 className="text-[26px] font-bold text-[#7c80ff] mb-3 tracking-tight">
+                <h1 className="text-[26px] font-bold text-[#7C7AFF] mb-3 tracking-tight">
                   {slides[currentSlide].title}
                 </h1>
                 <p className="text-white text-[16px] leading-relaxed max-w-[300px]">
@@ -105,7 +105,7 @@ export default function OnboardingPage() {
           {/* Next Button */}
           <button 
             onClick={handleNext}
-            className="w-12 h-12 bg-[#7c80ff] hover:bg-[#6b6eed] rounded-full flex justify-center items-center transition-transform hover:scale-105 active:scale-95 shadow-lg"
+            className="w-12 h-12 bg-[#7C7AFF] hover:bg-[#6664E6] rounded-full flex justify-center items-center transition-transform hover:scale-105 active:scale-95 shadow-lg"
           >
             <ChevronRight size={24} strokeWidth={2} className="text-[#e6e8fa]" />
           </button>

@@ -72,7 +72,7 @@ export default function AirtimePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white font-sans relative">
+    <div className="min-h-screen bg-[#1E1544] text-white font-sans relative">
       {/* Header */}
       <header className="px-6 pt-12 pb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -98,8 +98,8 @@ export default function AirtimePage() {
                 onClick={() => setSelectedNetwork(net.id)}
                 className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all ${
                   selectedNetwork === net.id 
-                    ? "border-[#7c80ff] bg-[#1e1936]" 
-                    : "border-[#3e3863] bg-[#1e1936] opacity-70"
+                    ? "border-[#7C7AFF] bg-[#251A5A]" 
+                    : "border-[#3e3863] bg-[#251A5A] opacity-70"
                 }`}
               >
                 <div 
@@ -107,7 +107,7 @@ export default function AirtimePage() {
                 >
                   <img src={net.image} alt={net.name} className="w-full h-full object-cover" />
                 </div>
-                <span className={`text-[12px] font-medium ${selectedNetwork === net.id ? "text-[#7c80ff]" : "text-[#d1d5db]"}`}>
+                <span className={`text-[12px] font-medium ${selectedNetwork === net.id ? "text-[#7C7AFF]" : "text-[#d1d5db]"}`}>
                   {net.name}
                 </span>
               </button>
@@ -125,7 +125,7 @@ export default function AirtimePage() {
                 placeholder="0800 000 0000"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 px-5 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7c80ff] transition-colors text-[16px] font-medium"
+                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 px-5 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7C7AFF] transition-colors text-[16px] font-medium"
                 required
               />
             </div>
@@ -142,7 +142,7 @@ export default function AirtimePage() {
                 placeholder="0.00"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-10 pr-5 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7c80ff] transition-colors text-[18px] font-bold"
+                className="w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-10 pr-5 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7C7AFF] transition-colors text-[18px] font-bold"
                 required
               />
             </div>
@@ -153,7 +153,7 @@ export default function AirtimePage() {
                   key={amt}
                   type="button"
                   onClick={() => setAmount(amt)}
-                  className="px-4 py-2 rounded-xl border border-[#3e3863] text-[#d1d5db] text-sm hover:border-[#7c80ff] hover:text-[#7c80ff] transition-colors"
+                  className="px-4 py-2 rounded-xl border border-[#3e3863] text-[#d1d5db] text-sm hover:border-[#7C7AFF] hover:text-[#7C7AFF] transition-colors"
                 >
                   ₦{amt}
                 </button>
@@ -163,7 +163,7 @@ export default function AirtimePage() {
 
           <button
             type="submit"
-            className="w-full bg-[#7c80ff] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6b6eed] transition-colors mt-8 shadow-sm"
+            className="w-full bg-[#7C7AFF] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6664E6] transition-colors mt-8 shadow-sm"
           >
             Proceed
           </button>
@@ -180,13 +180,13 @@ export default function AirtimePage() {
           />
           
           {/* Modal */}
-          <div className="fixed bottom-0 left-0 right-0 bg-[#1e1936] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300">
+          <div className="fixed bottom-0 left-0 right-0 bg-[#251A5A] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300">
             {/* Drag Handle indicator */}
             <div className="w-12 h-1 bg-[#3e3863] rounded-full mx-auto mb-6" />
             
             <h2 className="text-xl font-bold text-center text-white mb-2">Confirm Payment</h2>
             <div className="text-center mb-8">
-              <span className="text-3xl font-bold text-[#7c80ff]">₦{amount}</span>
+              <span className="text-3xl font-bold text-[#7C7AFF]">₦{amount}</span>
             </div>
 
             {/* Status Messages */}
@@ -217,9 +217,9 @@ export default function AirtimePage() {
             </div>
 
             {/* Wallet Section */}
-            <div className="bg-[#130f28] rounded-[20px] p-4 flex items-center justify-between mb-8 border border-[#3e3863]/50">
+            <div className="bg-[#1E1544] rounded-[20px] p-4 flex items-center justify-between mb-8 border border-[#3e3863]/50">
               <div className="flex items-center gap-3">
-                <Wallet className="text-[#7c80ff]" size={20} />
+                <Wallet className="text-[#7C7AFF]" size={20} />
                 <span className="text-[#d1d5db] font-medium">Wallet</span>
               </div>
               <span className="text-white font-bold">₦50.00</span>
@@ -230,7 +230,7 @@ export default function AirtimePage() {
               <button
                 onClick={handleConfirm}
                 disabled={isProcessing || !!successMessage}
-                className="w-full bg-[#7c80ff] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6b6eed] transition-colors shadow-sm flex justify-center items-center disabled:opacity-70"
+                className="w-full bg-[#7C7AFF] text-white rounded-[16px] py-[18px] font-semibold text-[16px] hover:bg-[#6664E6] transition-colors shadow-sm flex justify-center items-center disabled:opacity-70"
               >
                 {isProcessing ? (
                   <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

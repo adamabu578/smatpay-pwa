@@ -34,7 +34,7 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#130f28] text-white font-sans pb-24">
+    <div className="min-h-screen bg-[#1E1544] text-white font-sans pb-24">
       {/* Top Header */}
       <header className="px-6 pt-8 pb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -61,7 +61,7 @@ export default function DashboardPage() {
       <div className="px-6 space-y-8">
         
         {/* Wallet Balance Card */}
-        <div className="bg-[#7c80ff] rounded-3xl p-6 relative overflow-hidden shadow-lg shadow-[#7c80ff]/20">
+        <div className="bg-[#7C7AFF] rounded-3xl p-6 relative overflow-hidden shadow-lg shadow-[#7C7AFF]/20">
           {/* Subtle Background Pattern */}
           <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
             <svg width="150" height="150" viewBox="0 0 200 200" fill="none">
@@ -79,11 +79,11 @@ export default function DashboardPage() {
             </h2>
             
             <div className="flex gap-4">
-              <Link href="/fund-wallet" className="flex-1 bg-white text-[#7c80ff] py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors">
+              <Link href="/fund-wallet" className="flex-1 bg-white text-[#7C7AFF] py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors">
                 <PlusSquare size={18} strokeWidth={2} />
                 <span>Fund Wallet</span>
               </Link>
-              <button className="flex-1 bg-white text-[#7c80ff] py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors">
+              <button className="flex-1 bg-white text-[#7C7AFF] py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors">
                 <ArrowUpRight size={18} strokeWidth={2} />
                 <span>Withdraw</span>
               </button>
@@ -97,26 +97,26 @@ export default function DashboardPage() {
           <div className="grid grid-cols-4 gap-4">
             {/* Link Item */}
             <div className="flex flex-col items-center gap-2">
-              <button className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Landmark className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <button className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Landmark className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </button>
               <span className="text-[13px] text-[#d1d5db]">Account</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <Link href="/airtime" className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Phone className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <Link href="/airtime" className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Phone className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </Link>
               <span className="text-[13px] text-[#d1d5db]">Airtime</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <Link href="/data" className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Wifi className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <Link href="/data" className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Wifi className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </Link>
               <span className="text-[13px] text-[#d1d5db]">Data</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <button className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Lightbulb className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <button className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Lightbulb className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </button>
               <span className="text-[13px] text-[#d1d5db]">Electricity</span>
             </div>
@@ -124,7 +124,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Refer & Earn Banner */}
-        <div className="bg-[#7c80ff] rounded-3xl p-6 relative overflow-hidden shadow-lg shadow-[#7c80ff]/20 flex items-center justify-between">
+        <div className="bg-[#7C7AFF] rounded-3xl p-6 relative overflow-hidden shadow-lg shadow-[#7C7AFF]/20 flex items-center justify-between">
           <div className="relative z-10 max-w-[65%]">
             <span className="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block backdrop-blur-sm">
               NEW
@@ -145,26 +145,26 @@ export default function DashboardPage() {
           <h3 className="text-lg font-bold mb-4">Pay Bills</h3>
           <div className="grid grid-cols-4 gap-4">
             <div className="flex flex-col items-center gap-2">
-              <button className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Monitor className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <button className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Monitor className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </button>
               <span className="text-[13px] text-[#d1d5db]">TV</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <button className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Zap className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <button className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Zap className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </button>
               <span className="text-[13px] text-[#d1d5db]">Power</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <button className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <GraduationCap className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <button className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <GraduationCap className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </button>
               <span className="text-[13px] text-[#d1d5db]">Exam</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <button className="w-16 h-16 rounded-2xl bg-[#1e1936] flex items-center justify-center hover:bg-[#282245] transition-colors shadow-sm">
-                <Gift className="text-[#7c80ff]" size={24} strokeWidth={1.5} />
+              <button className="w-16 h-16 rounded-2xl bg-[#251A5A] flex items-center justify-center hover:bg-[#302273] transition-colors shadow-sm">
+                <Gift className="text-[#7C7AFF]" size={24} strokeWidth={1.5} />
               </button>
               <span className="text-[13px] text-[#d1d5db]">Cards</span>
             </div>
@@ -175,14 +175,14 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold">Recent Transactions</h3>
-            <Link href="/transactions" className="text-[#7c80ff] text-[14px] font-medium hover:text-white transition-colors">
+            <Link href="/transactions" className="text-[#7C7AFF] text-[14px] font-medium hover:text-white transition-colors">
               View All
             </Link>
           </div>
           <div className="space-y-3">
-            <Link href="/transactions" className="bg-[#1e1936] rounded-2xl p-4 flex items-center justify-between hover:bg-[#282245] transition-colors block">
+            <Link href="/transactions" className="bg-[#251A5A] rounded-2xl p-4 flex items-center justify-between hover:bg-[#302273] transition-colors block">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#130f28] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#1E1544] flex items-center justify-center">
                   <ArrowUpRight size={18} className="text-[#4caf50]" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -195,9 +195,9 @@ export default function DashboardPage() {
                 <span className="text-[#4caf50] text-[11px] font-medium">Successful</span>
               </div>
             </Link>
-            <Link href="/transactions" className="bg-[#1e1936] rounded-2xl p-4 flex items-center justify-between hover:bg-[#282245] transition-colors block">
+            <Link href="/transactions" className="bg-[#251A5A] rounded-2xl p-4 flex items-center justify-between hover:bg-[#302273] transition-colors block">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#130f28] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#1E1544] flex items-center justify-center">
                   <Phone size={18} className="text-[#4caf50]" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -216,12 +216,12 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#130f28] border-t border-[#3e3863] px-6 py-4 flex justify-between items-center z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#1E1544] border-t border-[#3e3863] px-6 py-4 flex justify-between items-center z-50">
         <Link href="/dashboard" className="flex flex-col items-center gap-1 group">
-          <div className="w-14 h-10 rounded-2xl bg-[#282245] flex items-center justify-center transition-colors">
-            <Home className="text-[#7c80ff]" size={22} strokeWidth={1.5} />
+          <div className="w-14 h-10 rounded-2xl bg-[#302273] flex items-center justify-center transition-colors">
+            <Home className="text-[#7C7AFF]" size={22} strokeWidth={1.5} />
           </div>
-          <span className="text-[12px] font-medium text-[#7c80ff]">Home</span>
+          <span className="text-[12px] font-medium text-[#7C7AFF]">Home</span>
         </Link>
         <Link href="#" className="flex flex-col items-center gap-1 group">
           <div className="w-14 h-10 rounded-2xl flex items-center justify-center transition-colors">

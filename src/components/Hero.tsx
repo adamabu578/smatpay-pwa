@@ -11,7 +11,7 @@ const Hero = () => {
                     alt="Hero Background" 
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#130f28] via-[#130f28]/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1E1544] via-[#1E1544]/70 to-transparent"></div>
             </div>
 
             <div className="container mx-auto px-6 relative z-10">
@@ -41,7 +41,7 @@ const Hero = () => {
                     <div className="mt-12 flex items-center space-x-6 text-white/60">
                         <div className="flex -space-x-3">
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="w-10 h-10 rounded-full border-2 border-[#130f28] bg-gray-600 flex items-center justify-center overflow-hidden">
+                                <div key={i} className="w-10 h-10 rounded-full border-2 border-[#1E1544] bg-gray-600 flex items-center justify-center overflow-hidden">
                                     <div className="w-full h-full bg-primary/20 flex items-center justify-center text-[10px] font-bold">U{i}</div>
                                 </div>
                             ))}

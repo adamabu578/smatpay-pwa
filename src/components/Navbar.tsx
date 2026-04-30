@@ -25,7 +25,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#130f28]/80 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#1E1544]/80 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <Link href="/" className="flex items-center">
                     <SmatPayLogo className="h-14" />
@@ -52,7 +52,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="md:hidden bg-[#130f28]/95 absolute top-full left-0 right-0 py-8 px-6 border-t border-white/10 animate-in fade-in slide-in-from-top-4">
+                <div className="md:hidden bg-[#1E1544]/95 absolute top-full left-0 right-0 py-8 px-6 border-t border-white/10 animate-in fade-in slide-in-from-top-4">
                     <div className="flex flex-col space-y-6">
                         {navLinks.map((link) => (
                             <Link 
