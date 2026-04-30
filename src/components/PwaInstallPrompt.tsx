@@ -38,11 +38,6 @@ export default function PwaInstallPrompt() {
         e.preventDefault();
         // Stash the event so it can be triggered later.
         setDeferredPrompt(e);
-        // Update UI notify the user they can install the PWA
-        const hasDismissed = localStorage.getItem('pwaPromptDismissed');
-        if (!hasDismissed) {
-          setShowPrompt(true);
-        }
       };
 
       window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
@@ -53,17 +48,19 @@ export default function PwaInstallPrompt() {
         setDeferredPrompt(null);
       });
 
-      // --- DEVELOPMENT ONLY: Show the prompt for UI testing ---
-      let devTimer: NodeJS.Timeout;
-      if (process.env.NODE_ENV === 'development') {
-        devTimer = setTimeout(() => {
+      // Show the prompt UI after a short delay, even if beforeinstallprompt hasn't fired yet
+      // This guarantees the UI appears in production.
+      let androidTimer: NodeJS.Timeout;
+      const hasDismissed = localStorage.getItem('pwaPromptDismissed');
+      if (!hasDismissed || process.env.NODE_ENV === 'development') {
+        androidTimer = setTimeout(() => {
           setShowPrompt(true);
-        }, 1000);
+        }, 2500);
       }
 
       return () => {
         window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-        if (devTimer) clearTimeout(devTimer);
+        if (androidTimer) clearTimeout(androidTimer);
       };
     }
   }, []);
@@ -77,10 +74,9 @@ export default function PwaInstallPrompt() {
     if (isIOS) return; // iOS doesn't have an install API, uses instructions instead
 
     if (!deferredPrompt) {
-      if (process.env.NODE_ENV === 'development') {
-        alert("The actual PWA installation prompt is disabled in development mode. To test the real installation flow, please run 'npm run build' and then 'npm run start'.");
-        dismissPrompt();
-      }
+      // Fallback if beforeinstallprompt hasn't fired but user clicked Install
+      alert("To install SmatPay, tap your browser's menu (⋮) and select 'Install app' or 'Add to Home screen'.");
+      dismissPrompt();
       return;
     }
 
