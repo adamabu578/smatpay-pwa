@@ -19,7 +19,7 @@ export default function DataPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [dataBundles, setDataBundles] = useState<Bundle[]>([]);
   const [selectedBundle, setSelectedBundle] = useState<Bundle | null>(null);
-  
+
   const [isLoadingBundles, setIsLoadingBundles] = useState(false);
   const [showBundleSelect, setShowBundleSelect] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -39,23 +39,23 @@ export default function DataPage() {
           }
         });
         const data = await response.json();
-        
+
         if (data.status === "success" && data.data) {
-           const mappedBundles = data.data.map((item: any) => ({
-             id: item.variation_code || item.id,
-             name: item.name || item.plan,
-             price: item.variation_amount || item.amount || item.price || "",
-             variation_code: item.variation_code || item.id
-           }));
-           setDataBundles(mappedBundles);
-           if (mappedBundles.length > 0) {
-             setSelectedBundle(mappedBundles[0]);
-           } else {
-             setSelectedBundle(null);
-           }
+          const mappedBundles = data.data.map((item: any) => ({
+            id: item.variation_code || item.id,
+            name: item.name || item.plan,
+            price: item.variation_amount || item.amount || item.price || "",
+            variation_code: item.variation_code || item.id
+          }));
+          setDataBundles(mappedBundles);
+          if (mappedBundles.length > 0) {
+            setSelectedBundle(mappedBundles[0]);
+          } else {
+            setSelectedBundle(null);
+          }
         } else {
-           setDataBundles([]);
-           setSelectedBundle(null);
+          setDataBundles([]);
+          setSelectedBundle(null);
         }
       } catch (err) {
         console.error("Failed to fetch bundles:", err);
@@ -82,7 +82,7 @@ export default function DataPage() {
     setIsProcessing(true);
     setErrorMessage("");
     setSuccessMessage("");
-    
+
     try {
       const token = localStorage.getItem("token") || "";
       const payload = {
@@ -91,7 +91,7 @@ export default function DataPage() {
         variation_code: selectedBundle?.variation_code,
         amount: selectedBundle?.price
       };
-      
+
       const response = await fetch(`${APIConstants.BASE_URL}/data`, {
         method: "POST",
         headers: {
@@ -100,9 +100,9 @@ export default function DataPage() {
         },
         body: JSON.stringify(payload)
       });
-      
+
       const data = await response.json();
-      
+
       if (data.status === "success") {
         setIsProcessing(false);
         setShowConfirm(false);
@@ -149,13 +149,12 @@ export default function DataPage() {
                 key={net.id}
                 type="button"
                 onClick={() => setSelectedNetwork(net.id)}
-                className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all ${
-                  selectedNetwork === net.id 
-                    ? "border-[#7C7AFF] bg-[#251A5A]" 
+                className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all ${selectedNetwork === net.id
+                    ? "border-[#7C7AFF] bg-[#251A5A]"
                     : "border-[#3e3863] bg-[#251A5A] opacity-70"
-                }`}
+                  }`}
               >
-                <div 
+                <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center mb-2 overflow-hidden bg-white"
                 >
                   <img src={net.image} alt={net.name} className="w-full h-full object-cover" />
@@ -170,7 +169,7 @@ export default function DataPage() {
 
         {/* Form */}
         <form onSubmit={handleProceed} className="space-y-6">
-          
+
           {/* Select Data Bundle */}
           <div>
             <h2 className="text-[17px] font-bold text-white mb-4">Select Data Bundle</h2>
@@ -178,11 +177,10 @@ export default function DataPage() {
               <div className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7C7AFF]">
                 <Wifi size={20} strokeWidth={2} />
               </div>
-              <div 
+              <div
                 onClick={() => { if (!isLoadingBundles && dataBundles.length > 0) setShowBundleSelect(true); }}
-                className={`w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-12 text-[#d1d5db] flex items-center justify-between transition-colors ${
-                  isLoadingBundles || dataBundles.length === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-[#7C7AFF]"
-                }`}
+                className={`w-full bg-transparent border border-[#3e3863] rounded-[20px] py-4 pl-14 pr-12 text-[#d1d5db] flex items-center justify-between transition-colors ${isLoadingBundles || dataBundles.length === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:border-[#7C7AFF]"
+                  }`}
               >
                 <span className="text-[15px] truncate">
                   {isLoadingBundles ? "Loading bundles..." : selectedBundle ? selectedBundle.name : "No bundles available"}
@@ -224,8 +222,8 @@ export default function DataPage() {
                 className="w-full bg-transparent border border-[#7C7AFF] rounded-[20px] py-4 pl-14 pr-12 text-white placeholder-[#8683a1] focus:outline-none focus:border-[#7C7AFF] transition-colors text-[15px] font-medium"
                 required
               />
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="absolute right-5 top-1/2 -translate-y-1/2 text-[#8683a1] hover:text-[#7C7AFF] transition-colors"
               >
                 <User size={20} strokeWidth={1.5} />
@@ -246,17 +244,17 @@ export default function DataPage() {
       {/* Select Data Bundle Bottom Sheet */}
       {showBundleSelect && (
         <>
-          <div 
+          <div
             className="fixed inset-0 bg-black/60 z-40 animate-in fade-in duration-200"
             onClick={() => setShowBundleSelect(false)}
           />
           <div className="fixed bottom-0 left-0 right-0 bg-[#251A5A] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300 max-h-[80vh] flex flex-col">
             <div className="w-12 h-1 bg-[#3e3863] rounded-full mx-auto mb-6 shrink-0" />
             <h2 className="text-xl font-bold text-center text-white mb-6 shrink-0">Select Data Bundle</h2>
-            
+
             <div className="overflow-y-auto overflow-x-hidden -mx-6 px-6 pb-6">
               {dataBundles.map((bundle) => (
-                <div 
+                <div
                   key={bundle.id}
                   onClick={() => {
                     setSelectedBundle(bundle);
@@ -285,16 +283,16 @@ export default function DataPage() {
       {showConfirm && (
         <>
           {/* Backdrop */}
-          <div 
+          <div
             className="fixed inset-0 bg-black/60 z-40 animate-in fade-in duration-200"
             onClick={() => !isProcessing && setShowConfirm(false)}
           />
-          
+
           {/* Modal */}
           <div className="fixed bottom-0 left-0 right-0 bg-[#251A5A] rounded-t-[32px] z-50 p-6 animate-in slide-in-from-bottom-full duration-300">
             {/* Drag Handle indicator */}
             <div className="w-12 h-1 bg-[#3e3863] rounded-full mx-auto mb-6" />
-            
+
             <h2 className="text-xl font-bold text-center text-white mb-2">Confirm Purchase</h2>
             <div className="text-center mb-8">
               <span className="text-3xl font-bold text-[#7C7AFF]">₦{selectedBundle?.price}</span>
@@ -367,7 +365,7 @@ export default function DataPage() {
 
       {/* Success Screen */}
       {transactionId && (
-        <PaymentSuccess 
+        <PaymentSuccess
           transactionId={transactionId}
           onDone={() => router.push("/dashboard")}
           onViewReceipt={() => router.push("/transactions")}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Search, BarChart2, Phone, RefreshCcw } from "lucide-react";
 
@@ -10,48 +10,25 @@ export default function TransactionsPage() {
 
   const filters = ["All", "Airtime", "Data", "Electricity", "Wallet"];
 
-  const transactions = [
-    { 
-      id: 1, 
-      type: "wallet", 
-      title: "Wallet topup", 
-      subtitle: "wallet", 
-      amount: "-₦50", 
-      status: "Wallet topup" 
-    },
-    { 
-      id: 2, 
-      type: "airtime", 
-      title: "Airtime", 
-      subtitle: "08146704074", 
-      amount: "-₦50", 
-      status: "Successful" 
-    },
-    { 
-      id: 3, 
-      type: "airtime", 
-      title: "Airtime", 
-      subtitle: "08146704074", 
-      amount: "-₦100", 
-      status: "Successful" 
-    },
-    { 
-      id: 4, 
-      type: "wallet", 
-      title: "Wallet topup", 
-      subtitle: "wallet", 
-      amount: "-₦100", 
-      status: "Wallet topup" 
-    },
-    { 
-      id: 5, 
-      type: "wallet", 
-      title: "Wallet topup", 
-      subtitle: "wallet", 
-      amount: "-₦50", 
-      status: "Wallet topup" 
-    },
-  ];
+  const [transactions, setTransactions] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const loadTransactions = async () => {
+      try {
+        const { fetchTransactionHistory } = await import("@/lib/profile");
+        const data = await fetchTransactionHistory();
+        setTransactions(data);
+      } catch (err: any) {
+        console.error("Failed to load transactions:", err);
+        setError(err.message || "Failed to load transactions");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadTransactions();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#1E1544] text-white font-sans">
@@ -113,29 +90,54 @@ export default function TransactionsPage() {
 
         {/* Transaction List */}
         <div className="space-y-3">
-          {transactions.map((tx) => (
-            <div key={tx.id} className="bg-[#251A5A] rounded-2xl p-4 flex items-center justify-between hover:bg-[#302273] transition-colors cursor-pointer">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-[14px] bg-[#1E1544] flex items-center justify-center">
-                  {tx.type === "wallet" ? (
-                    <RefreshCcw size={20} className="text-[#4caf50]" strokeWidth={1.5} />
-                  ) : (
-                    <Phone size={20} className="text-[#4caf50]" strokeWidth={1.5} />
-                  )}
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-[16px] mb-1">{tx.title}</h3>
-                  <p className="text-[#8683a1] text-[13px]">{tx.subtitle}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-white font-bold text-[16px] mb-2">{tx.amount}</p>
-                <span className="inline-block px-3 py-1 rounded-full bg-[#4caf50]/10 text-[#4caf50] text-[11px] font-medium">
-                  {tx.status}
-                </span>
-              </div>
+          {isLoading ? (
+            <div className="text-center py-8 text-[#8683a1]">
+              <div className="w-8 h-8 border-2 border-[#7C7AFF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p>Loading transactions...</p>
             </div>
-          ))}
+          ) : error ? (
+            <div className="text-center py-8 text-red-400">
+              <p>{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="mt-4 px-4 py-2 bg-[#251A5A] rounded-lg text-white hover:bg-[#302273] transition-colors"
+              >
+                Try Again
+              </button>
+            </div>
+          ) : transactions.length === 0 ? (
+            <div className="text-center py-8 text-[#8683a1]">
+              <p>No transactions found</p>
+            </div>
+          ) : (
+            transactions.map((tx, idx) => (
+              <div key={tx.id || tx.reference || idx} className="bg-[#251A5A] rounded-2xl p-4 flex items-center justify-between hover:bg-[#302273] transition-colors cursor-pointer">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-[14px] bg-[#1E1544] flex items-center justify-center">
+                    {(tx.type?.toLowerCase() === "wallet" || tx.service_type?.toLowerCase() === "wallet") ? (
+                      <RefreshCcw size={20} className="text-[#4caf50]" strokeWidth={1.5} />
+                    ) : (
+                      <Phone size={20} className="text-[#4caf50]" strokeWidth={1.5} />
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-[16px] mb-1">
+                      {tx.title || tx.description || tx.type || tx.service_type || "Transaction"}
+                    </h3>
+                    <p className="text-[#8683a1] text-[13px]">{tx.subtitle || tx.reference || tx.date || tx.created_at || "Details"}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-white font-bold text-[16px] mb-2">
+                    {tx.amount ? (tx.amount.toString().startsWith('-') ? tx.amount : `₦${tx.amount}`) : "-"}
+                  </p>
+                  <span className="inline-block px-3 py-1 rounded-full bg-[#4caf50]/10 text-[#4caf50] text-[11px] font-medium">
+                    {tx.status || "Successful"}
+                  </span>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         {/* End of list */}

@@ -223,9 +223,9 @@ export default function DashboardPage() {
           </div>
           <span className="text-[12px] font-medium text-[#7C7AFF]">Home</span>
         </Link>
-        <Link href="#" className="flex flex-col items-center gap-1 group">
+        <Link href="/services" className="flex flex-col items-center gap-1 group">
           <div className="w-14 h-10 rounded-2xl flex items-center justify-center transition-colors">
-            <Grid className="text-[#8683a1] group-hover:text-white" size={22} strokeWidth={1.5} />
+            <PlusSquare className="text-[#8683a1] group-hover:text-white" size={22} strokeWidth={1.5} />
           </div>
           <span className="text-[12px] font-medium text-[#8683a1] group-hover:text-white transition-colors">Services</span>
         </Link>

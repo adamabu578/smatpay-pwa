@@ -144,3 +144,37 @@ export async function fetchWalletBalance(): Promise<number> {
     clearTimeout(timeout);
   }
 }
+
+export async function fetchTransactionHistory(): Promise<any[]> {
+  console.log("🌐 Fetching transaction history from API...");
+  const token = getAuthToken();
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+  try {
+    const res = await fetch(APIConstants.transactionsEndpoint, {
+      headers: buildHeaders(token),
+      signal: controller.signal,
+    });
+
+    if (!res.ok)
+      throw new Error(`Server responded with status ${res.status}`);
+
+    const json = await res.json();
+    
+    // Some endpoints wrap the array in 'data', others in 'msg', some just return the array if successful
+    if (json.status?.toString().toLowerCase() !== "success") {
+      throw new Error((json.msg as string) ?? "Request failed");
+    }
+    
+    const history = Array.isArray(json.data) ? json.data : Array.isArray(json.msg) ? json.msg : (Array.isArray(json) ? json : []);
+    return history;
+  } catch (err: unknown) {
+    if ((err as { name?: string }).name === "AbortError")
+      throw new Error("Request timeout. Please check your connection.");
+    throw err;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
