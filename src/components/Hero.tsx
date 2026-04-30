@@ -30,7 +30,7 @@ const Hero = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <Link href="/onboarding">
+                        <Link href="/login">
                             <button className="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-primary/20 transform hover:-translate-y-1">
                                 Get Started
                             </button>

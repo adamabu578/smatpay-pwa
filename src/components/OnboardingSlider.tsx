@@ -244,7 +244,7 @@ export default function OnboardingSlider() {
             </div>
 
             <div className={styles.finalActions}>
-              <button className={styles.getStartedButton} onClick={() => router.push('/register')}>Get Started</button>
+              <button className={styles.getStartedButton} onClick={() => router.push('/login')}>Get Started</button>
               <div className={styles.loginRow}>
                 <span>Already have an account? </span>
                 <button className={styles.loginLink} onClick={() => router.push('/login')}>Log in</button>

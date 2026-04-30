@@ -40,7 +40,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:flex items-center space-x-4">
-                    <Link href="/onboarding" className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 inline-block">
+                    <Link href="/login" className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg font-semibold transition-all transform hover:scale-105 inline-block">
                         Get Started
                     </Link>
                 </div>
@@ -65,7 +65,7 @@ const Navbar = () => {
                             </Link>
                         ))}
                         <div className="flex flex-col space-y-4 pt-4">
-                            <Link href="/onboarding" className="bg-primary text-white w-full py-3 rounded-lg font-bold text-center block">
+                            <Link href="/login" className="bg-primary text-white w-full py-3 rounded-lg font-bold text-center block">
                                 Get Started
                             </Link>
                         </div>
