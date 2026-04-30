@@ -1,18 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, RotateCw, Landmark, ChevronRight, Copy } from "lucide-react";
+import { fetchProfileDetails } from "@/lib/profile";
 
 export default function FundWalletPage() {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
+  const [profile, setProfile] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const data = await fetchProfileDetails();
+        setProfile(data);
+      } catch (err) {
+        console.error("Failed to load profile:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadProfile();
+  }, []);
+
+  const virtualAccount = profile?.virtualAccounts?.[0];
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("5300275248");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (virtualAccount?.accountNumber) {
+      navigator.clipboard.writeText(virtualAccount.accountNumber);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
@@ -52,9 +73,17 @@ export default function FundWalletPage() {
         <div className="bg-[#1e1936] rounded-2xl p-6">
           <div className="mb-6">
             <p className="text-[#8683a1] text-[14px] mb-1">SmatPay Account Number</p>
-            <h2 className="text-white font-bold text-[28px] tracking-wide mb-1">5300275248</h2>
-            <p className="text-[#8683a1] text-[14px] mb-1">Vtu Platform/abu Adamu</p>
-            <p className="text-[#8683a1] text-[14px]">9PSB</p>
+            {isLoading ? (
+              <h2 className="text-white font-bold text-[28px] tracking-wide mb-1">...</h2>
+            ) : virtualAccount ? (
+              <>
+                <h2 className="text-white font-bold text-[28px] tracking-wide mb-1">{virtualAccount.accountNumber}</h2>
+                <p className="text-[#8683a1] text-[14px] mb-1">{virtualAccount.accountName}</p>
+                <p className="text-[#8683a1] text-[14px]">{virtualAccount.bankName || virtualAccount.provider}</p>
+              </>
+            ) : (
+              <p className="text-white text-[16px] mb-1">No Virtual Account Generated. Go to Profile to generate one.</p>
+            )}
           </div>
 
           <div className="flex gap-4">

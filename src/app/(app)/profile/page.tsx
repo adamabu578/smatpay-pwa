@@ -7,8 +7,10 @@ import {
   ChevronRight, LogOut, Home, Grid, Wallet, Copy, RefreshCw
 } from "lucide-react";
 import { fetchProfileDetails, generateVirtualAccount, clearProfileCache } from "@/lib/profile";
+import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const [profile, setProfile] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -41,6 +43,12 @@ export default function ProfilePage() {
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    clearProfileCache();
+    router.push("/login");
   };
 
   return (
@@ -204,7 +212,10 @@ export default function ProfilePage() {
         </div>
 
         {/* Log Out Button */}
-        <button className="w-full bg-[#3e1e2d] text-[#ff4b4b] py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#4a2234] transition-colors">
+        <button 
+          onClick={handleLogout}
+          className="w-full bg-[#3e1e2d] text-[#ff4b4b] py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#4a2234] transition-colors"
+        >
           <LogOut size={20} strokeWidth={2} />
           <span>Log Out</span>
         </button>

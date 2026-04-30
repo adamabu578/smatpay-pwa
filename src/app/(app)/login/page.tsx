@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { EyeOff, Eye, Fingerprint } from "lucide-react";
 import SmatPayLogo from "@/components/SmatPayLogo";
 import { APIConstants } from "@/lib/api-constants";
+import { clearProfileCache } from "@/lib/profile";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -39,6 +40,7 @@ export default function LoginPage() {
         if (data.token) {
           localStorage.setItem("token", data.token);
         }
+        clearProfileCache();
         router.push("/dashboard"); // navigate to dashboard
       } else {
         setError(data.msg || "Invalid credentials. Please try again.");

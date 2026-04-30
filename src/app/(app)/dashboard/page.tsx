@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { 
   Bell, Eye, PlusSquare, ArrowUpRight, 
@@ -8,8 +8,26 @@ import {
   Monitor, Zap, GraduationCap, Gift,
   Home, Grid, Wallet, User
 } from "lucide-react";
+import { fetchProfileDetails } from "@/lib/profile";
 
 export default function DashboardPage() {
+  const [profile, setProfile] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const data = await fetchProfileDetails();
+        setProfile(data);
+      } catch (err) {
+        console.error("Failed to load profile:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadProfile();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#130f28] text-white font-sans pb-24">
       {/* Top Header */}
@@ -18,7 +36,7 @@ export default function DashboardPage() {
           <div className="w-12 h-12 rounded-full bg-[#fcd385] flex items-center justify-center overflow-hidden">
             {/* Avatar Image Placeholder */}
             <img 
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=abu&backgroundColor=fcd385" 
+              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${profile?.firstName || 'user'}&backgroundColor=fcd385`} 
               alt="User Avatar" 
               className="w-full h-full object-cover"
             />
@@ -26,7 +44,7 @@ export default function DashboardPage() {
           <div>
             <p className="text-[#a5a6fa] text-sm">Welcome back</p>
             <h1 className="text-xl font-bold flex items-center gap-2">
-              abu <span>👋</span>
+              {isLoading ? "..." : profile?.firstName || "User"} <span>👋</span>
             </h1>
           </div>
         </div>
@@ -51,7 +69,9 @@ export default function DashboardPage() {
               <span className="text-[15px]">Wallet Balance</span>
               <Eye size={16} />
             </div>
-            <h2 className="text-4xl font-bold text-white mb-6">₦50.00</h2>
+            <h2 className="text-4xl font-bold text-white mb-6">
+              {isLoading ? "₦..." : `₦${profile?.balance || profile?.walletBalance || profile?.wallet_balance || '0.00'}`}
+            </h2>
             
             <div className="flex gap-4">
               <Link href="/fund-wallet" className="flex-1 bg-white text-[#7c80ff] py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors">
