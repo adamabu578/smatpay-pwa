@@ -110,33 +110,46 @@ export default function TransactionsPage() {
               <p>No transactions found</p>
             </div>
           ) : (
-            transactions.map((tx, idx) => (
-              <div key={tx.id || tx.reference || idx} className="bg-[#251A5A] rounded-2xl p-4 flex items-center justify-between hover:bg-[#302273] transition-colors cursor-pointer">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-[14px] bg-[#1E1544] flex items-center justify-center">
-                    {(tx.type?.toLowerCase() === "wallet" || tx.service_type?.toLowerCase() === "wallet") ? (
-                      <RefreshCcw size={20} className="text-[#4caf50]" strokeWidth={1.5} />
-                    ) : (
-                      <Phone size={20} className="text-[#4caf50]" strokeWidth={1.5} />
-                    )}
+            transactions.map((tx, idx) => {
+              const isFailed = tx.status?.toLowerCase().includes("fail");
+              const isWallet = tx.type?.toLowerCase() === "wallet" || tx.service_type?.toLowerCase() === "wallet" || tx.title?.toLowerCase().includes("wallet");
+              
+              const statusColors = isFailed 
+                ? { text: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", iconText: "text-[#f59e0b]", iconBg: "bg-[#f59e0b]/5" }
+                : { text: "text-[#10b981]", bg: "bg-[#10b981]/10", iconText: "text-[#10b981]", iconBg: "bg-[#10b981]/5" };
+
+              const formattedAmount = tx.amount 
+                ? (tx.amount.toString().startsWith('-') ? tx.amount.toString().replace('-', '-₦') : `-₦${tx.amount}`) 
+                : "-";
+
+              return (
+                <div key={tx.id || tx.reference || idx} className="bg-[#251A5A] rounded-[20px] p-4 flex items-center justify-between hover:bg-[#302273] transition-colors cursor-pointer mb-3">
+                  <div className="flex items-center gap-4">
+                    <div className={`w-[50px] h-[50px] rounded-[16px] flex items-center justify-center ${isWallet ? "bg-[#1E1544]" : statusColors.iconBg}`}>
+                      {isWallet ? (
+                        <RefreshCcw size={22} className="text-[#10b981]" strokeWidth={1.5} />
+                      ) : (
+                        <Phone size={22} className={statusColors.iconText} strokeWidth={1.5} />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold text-[16px] mb-1">
+                        {tx.title || tx.description || tx.type || tx.service_type || "Transaction"}
+                      </h3>
+                      <p className="text-[#8683a1] text-[13px]">{tx.date || tx.created_at || "Details"}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-white font-bold text-[16px] mb-1">
-                      {tx.title || tx.description || tx.type || tx.service_type || "Transaction"}
-                    </h3>
-                    <p className="text-[#8683a1] text-[13px]">{tx.subtitle || tx.reference || tx.date || tx.created_at || "Details"}</p>
+                  <div className="text-right">
+                    <p className="text-white font-bold text-[16px] mb-2">
+                      {formattedAmount}
+                    </p>
+                    <span className={`inline-block px-3 py-1 rounded-full ${statusColors.bg} ${statusColors.text} text-[11px] font-semibold`}>
+                      {tx.status || "Successful"}
+                    </span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-white font-bold text-[16px] mb-2">
-                    {tx.amount ? (tx.amount.toString().startsWith('-') ? tx.amount : `₦${tx.amount}`) : "-"}
-                  </p>
-                  <span className="inline-block px-3 py-1 rounded-full bg-[#4caf50]/10 text-[#4caf50] text-[11px] font-medium">
-                    {tx.status || "Successful"}
-                  </span>
-                </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 
