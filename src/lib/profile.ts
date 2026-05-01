@@ -9,7 +9,13 @@ function getAuthToken(): string {
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  if (!token) throw new Error("Authentication required. Please login again.");
+  if (!token || token === "undefined" || token === "null") {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+    throw new Error("Authentication required. Please login again.");
+  }
   return token;
 }
 
@@ -23,7 +29,21 @@ function buildHeaders(token: string): HeadersInit {
 
 function handleResponse(data: Record<string, unknown>): Record<string, unknown> {
   if (data.status?.toString().toLowerCase() !== "success") {
-    throw new Error((data.msg as string) ?? "Request failed");
+    const errorMsg = (data.msg as string) ?? "Request failed";
+    
+    // Check for authentication errors from the backend
+    if (
+      errorMsg.toLowerCase().includes("unauthenticated") || 
+      errorMsg.toLowerCase().includes("invalid token") ||
+      errorMsg.toLowerCase().includes("expired")
+    ) {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
+    }
+    
+    throw new Error(errorMsg);
   }
   return (data.data as Record<string, unknown>) ?? {};
 }
@@ -62,8 +82,13 @@ export async function fetchProfileDetails(
       signal: controller.signal,
     });
 
-    if (!res.ok)
+    if (!res.ok) {
+      if (res.status === 401 && typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
       throw new Error(`Server responded with status ${res.status}`);
+    }
 
     const json = await res.json();
     const data = handleResponse(json);
@@ -104,6 +129,10 @@ export async function generateVirtualAccount(provider = "payscribe"): Promise<Re
   });
 
   if (!res.ok) {
+    if (res.status === 401 && typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     throw new Error(`Server responded with status ${res.status}`);
   }
 
@@ -129,8 +158,13 @@ export async function fetchWalletBalance(): Promise<number> {
       signal: controller.signal,
     });
 
-    if (!res.ok)
+    if (!res.ok) {
+      if (res.status === 401 && typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
       throw new Error(`Server responded with status ${res.status}`);
+    }
 
     const json = await res.json();
     const data = handleResponse(json);
@@ -158,8 +192,13 @@ export async function fetchTransactionHistory(): Promise<any[]> {
       signal: controller.signal,
     });
 
-    if (!res.ok)
+    if (!res.ok) {
+      if (res.status === 401 && typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
       throw new Error(`Server responded with status ${res.status}`);
+    }
 
     const json = await res.json();
     
