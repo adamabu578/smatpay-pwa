@@ -56,10 +56,10 @@ export default function DataPage() {
 
         if (data.status === "success" && data.data) {
           const mappedBundles = data.data.map((item: any) => ({
-            id: item.variation_code || item.id,
-            name: item.name || item.plan,
+            id: item.variation_code || item.code || item.id,
+            name: item.name || item.plan || item.title,
             price: item.variation_amount || item.amount || item.price || "",
-            variation_code: item.variation_code || item.id
+            variation_code: item.variation_code || item.code || item.id
           }));
           setDataBundles(mappedBundles);
           if (mappedBundles.length > 0) {
@@ -100,9 +100,9 @@ export default function DataPage() {
     try {
       const token = localStorage.getItem("token") || "";
       const payload = {
-        operator: selectedNetwork,
+        network: selectedNetwork.toLowerCase(),
         phoneNumber: phoneNumber,
-        variation_code: selectedBundle?.variation_code,
+        bundleCode: selectedBundle?.variation_code,
         amount: selectedBundle?.price
       };
 
