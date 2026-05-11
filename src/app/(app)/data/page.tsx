@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, Wifi, ChevronDown, Phone, User, Wallet, CheckCircle2 } from "lucide-react";
 import { APIConstants } from "@/lib/api-constants";
 import { PaymentSuccess } from "@/components/PaymentSuccess";
+import { fetchWalletBalance } from "@/lib/profile";
 
 interface Bundle {
   id: string;
@@ -27,6 +28,19 @@ export default function DataPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [transactionId, setTransactionId] = useState<string | null>(null);
+  const [walletBalance, setWalletBalance] = useState<number | null>(null);
+
+  useEffect(() => {
+    const loadWallet = async () => {
+      try {
+        const balance = await fetchWalletBalance();
+        setWalletBalance(balance);
+      } catch (err) {
+        console.error("Failed to load wallet balance", err);
+      }
+    };
+    loadWallet();
+  }, []);
 
   useEffect(() => {
     const fetchBundles = async () => {
@@ -86,8 +100,8 @@ export default function DataPage() {
     try {
       const token = localStorage.getItem("token") || "";
       const payload = {
-        network: selectedNetwork,
-        phone: phoneNumber,
+        operator: selectedNetwork,
+        phoneNumber: phoneNumber,
         variation_code: selectedBundle?.variation_code,
         amount: selectedBundle?.price
       };
@@ -335,7 +349,7 @@ export default function DataPage() {
                 <Wallet className="text-[#7C7AFF]" size={20} />
                 <span className="text-[#d1d5db] font-medium">Wallet</span>
               </div>
-              <span className="text-white font-bold">₦50.00</span>
+              <span className="text-white font-bold">{walletBalance !== null ? `₦${walletBalance.toFixed(2)}` : "₦..."}</span>
             </div>
 
             {/* Actions */}

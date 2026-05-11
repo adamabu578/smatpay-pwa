@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, Wallet } from "lucide-react";
 import { APIConstants } from "@/lib/api-constants";
 import { PaymentSuccess } from "@/components/PaymentSuccess";
+import { fetchWalletBalance } from "@/lib/profile";
 
 export default function AirtimePage() {
   const router = useRouter();
@@ -16,6 +17,19 @@ export default function AirtimePage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [transactionId, setTransactionId] = useState<string | null>(null);
+  const [walletBalance, setWalletBalance] = useState<number | null>(null);
+
+  useEffect(() => {
+    const loadWallet = async () => {
+      try {
+        const balance = await fetchWalletBalance();
+        setWalletBalance(balance);
+      } catch (err) {
+        console.error("Failed to load wallet balance", err);
+      }
+    };
+    loadWallet();
+  }, []);
 
   const handleProceed = (e: React.FormEvent) => {
     e.preventDefault();
@@ -222,7 +236,7 @@ export default function AirtimePage() {
                 <Wallet className="text-[#7C7AFF]" size={20} />
                 <span className="text-[#d1d5db] font-medium">Wallet</span>
               </div>
-              <span className="text-white font-bold">₦50.00</span>
+              <span className="text-white font-bold">{walletBalance !== null ? `₦${walletBalance.toFixed(2)}` : "₦..."}</span>
             </div>
 
             {/* Actions */}
